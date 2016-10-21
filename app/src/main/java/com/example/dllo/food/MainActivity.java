@@ -22,6 +22,7 @@ public class MainActivity extends BaseAty implements View.OnClickListener{
         setClickListener(this, libraryTab, homeTab, myTab);
     }
 
+    // 点击事件
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
