@@ -1,13 +1,23 @@
 package com.example.dllo.food;
 
 
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
 import com.example.dllo.food.base.BaseAty;
+import com.example.dllo.food.homepage.HomepageFragment;
+import com.example.dllo.food.library.LibraryFragment;
+import com.example.dllo.food.my.MyFragment;
 
 public class MainActivity extends BaseAty implements View.OnClickListener{
     private RadioButton libraryTab, homeTab, myTab;
+    private android.support.v4.app.FragmentManager manager;
+    private FragmentTransaction transaction;
+
+    private FrameLayout mainFrame;
+
 
     @Override
     protected int getLayout() {
@@ -16,22 +26,39 @@ public class MainActivity extends BaseAty implements View.OnClickListener{
 
     @Override
     protected void initViews() {
+
+        mainFrame = bindView(R.id.mainFrame);
+
+
+
         libraryTab = bindView(R.id.libraryTab);
         homeTab = bindView(R.id.homeTab);
         myTab = bindView(R.id.myTab);
         setClickListener(this, libraryTab, homeTab, myTab);
+
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.mainFrame, new LibraryFragment());
+        transaction.commit();
+
     }
 
     // 点击事件
     @Override
     public void onClick(View v) {
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
         switch (v.getId()) {
             case R.id.libraryTab:
+                transaction.replace(R.id.mainFrame, new LibraryFragment());
                 break;
             case R.id.homeTab:
+                transaction.replace(R.id.mainFrame, new HomepageFragment());
                 break;
             case R.id.myTab:
+                transaction.replace(R.id.mainFrame, new MyFragment());
                 break;
         }
+        transaction.commit();
     }
 }
