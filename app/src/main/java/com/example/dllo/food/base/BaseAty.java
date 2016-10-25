@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 /**
- * Created by dllo on 16/10/21.
+ * Created by Ren on 16/10/21.
  */
 public abstract class BaseAty extends AppCompatActivity {
     @Override

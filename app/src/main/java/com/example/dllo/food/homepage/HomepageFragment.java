@@ -10,7 +10,7 @@ import com.example.dllo.food.base.BaseFragment;
 import java.util.ArrayList;
 
 /**
- * Created by dllo on 16/10/21.
+ * Created by Ren on 16/10/21.
  */
 public class HomepageFragment extends BaseFragment{
 
@@ -37,6 +37,11 @@ public class HomepageFragment extends BaseFragment{
         adapter.setFragments(fragments);
         vpHome.setAdapter(adapter);
         tabHome.setupWithViewPager(vpHome);
+
+    }
+
+    @Override
+    protected void initData() {
 
     }
 }

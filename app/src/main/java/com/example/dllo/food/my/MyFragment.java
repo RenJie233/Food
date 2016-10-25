@@ -7,7 +7,7 @@ import com.example.dllo.food.R;
 import com.example.dllo.food.base.BaseFragment;
 
 /**
- * Created by dllo on 16/10/21.
+ * Created by Ren on 16/10/21.
  */
 public class MyFragment extends BaseFragment implements View.OnClickListener{
     private RelativeLayout rLMyPhoto, rlMyCollect, rlMyUpload, rlMyOrder;
@@ -24,6 +24,11 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
         rlMyOrder = bindView(R.id.rlMyOrder);
 
         setClickListener(this, rLMyPhoto, rlMyCollect, rlMyUpload, rlMyOrder);
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
 
