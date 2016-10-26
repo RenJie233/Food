@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Ren on 16/10/25.
  */
-public class EvaluationBean {
+public class HomePageBean {
     /**
      * page : 1
      * total_pages : 7
@@ -60,6 +60,19 @@ public class EvaluationBean {
         private String type;
         private String link;
         private int content_type;
+        private List<String> images;
+
+
+
+        private List<FeedsBean> feeds;
+
+        public List<String> getImages() {
+            return images;
+        }
+
+        public void setImages(List<String> images) {
+            this.images = images;
+        }
 
         public int getItem_id() {
             return item_id;
@@ -124,5 +137,6 @@ public class EvaluationBean {
         public void setContent_type(int content_type) {
             this.content_type = content_type;
         }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.dllo.food.homepage;
 
+import android.util.Log;
 import android.widget.ListView;
 
 import com.android.volley.Response;
@@ -28,10 +29,10 @@ public class EvaluationFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        GsonRequest<EvaluationBean> gsonRequest = new GsonRequest<EvaluationBean>(EvaluationBean.class, UrlValues.HOME_EVALUATION, new Response.Listener<EvaluationBean>() {
+        GsonRequest<HomePageBean> gsonRequest = new GsonRequest<HomePageBean>(HomePageBean.class, UrlValues.HOME_EVALUATION, new Response.Listener<HomePageBean>() {
             @Override
-            public void onResponse(EvaluationBean response) {
-                EvaluationListAdapter adapter = new EvaluationListAdapter(getActivity());
+            public void onResponse(HomePageBean response) {
+                HomeListAdapter adapter = new HomeListAdapter(getActivity());
                 adapter.setBean(response);
                 lvHomeEvaluation.setAdapter(adapter);
             }

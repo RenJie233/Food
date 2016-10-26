@@ -39,13 +39,14 @@ public class FirstRecyclerAdapter extends RecyclerView.Adapter<FirstRecyclerAdap
         holder.tvHomeName.setText(bean.getFeeds().get(position).getPublisher());
         VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getPublisher_avatar(), holder.ivHomeIcon);
         holder.tvHomeTitle.setText(bean.getFeeds().get(position).getTitle());
+
         if (bean.getFeeds().get(position).getDescription().length() > 0){
             holder.tvHomeDes.setText(bean.getFeeds().get(position).getDescription());
         } else {
             holder.tvHomeDes.setVisibility(View.GONE);
         }
 
-//        holder.tvHomeCount.setText(been.get(position).getFeeds().get(0).getLike_ct());
+        holder.tvHomeCount.setText(bean.getFeeds().get(position).getLike_ct() + "");
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.example.dllo.food;
 
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
 import com.example.dllo.food.base.BaseAty;
@@ -16,7 +15,6 @@ public class MainActivity extends BaseAty implements View.OnClickListener{
     private android.support.v4.app.FragmentManager manager;
     private FragmentTransaction transaction;
 
-    private FrameLayout mainFrame;
 
 
     @Override
@@ -26,9 +24,6 @@ public class MainActivity extends BaseAty implements View.OnClickListener{
 
     @Override
     protected void initViews() {
-
-        mainFrame = bindView(R.id.mainFrame);
-
 
 
         libraryTab = bindView(R.id.libraryTab);
