@@ -1,13 +1,13 @@
 package com.example.dllo.food.homepage;
 
-import android.util.Log;
 import android.widget.ListView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.food.R;
-import com.example.dllo.food.UrlValues;
+import com.example.dllo.food.tools.UrlValues;
 import com.example.dllo.food.base.BaseFragment;
+import com.example.dllo.food.entity.HomePageBean;
 import com.example.dllo.food.volleyandgson.GsonRequest;
 import com.example.dllo.food.volleyandgson.VolleySingleTon;
 

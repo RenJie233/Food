@@ -3,74 +3,147 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/svLibrary"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.5"
-        android:orientation="vertical"
-        android:background="@mipmap/img_home_bg">
-        <include layout="@layout/title_library" android:id="@+id/libTitle">50dp</include>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="查 询 食 物 信 息"
-            android:textColor="#fff"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"/>
-        <Button
-            android:id="@+id/homeSearch"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:drawableLeft="@mipmap/ic_home_search"
-            android:text="请输入食物名称"
-            android:gravity="center_vertical"
-            android:textColor="#e88648"
-            android:background="#fff"/>
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:background="@mipmap/img_home_bg">
+                <include layout="@layout/title_library" android:id="@+id/libTitle">50dp</include>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查 询 食 物 信 息"
+                    android:textColor="#fff"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"/>
+                <Button
+                    android:id="@+id/homeSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:drawableLeft="@mipmap/ic_home_search"
+                    android:text="请输入食物名称"
+                    android:gravity="center_vertical"
+                    android:textColor="#e88648"
+                    android:background="#fff"/>
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_margin="20dp">
-        <Button
-            android:id="@+id/homeAnalyse"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/btn_home_analyse"
-            android:text="饮食分析"
-            android:gravity="center"
-            android:background="#fff"/>
-        <Button
-            android:id="@+id/homeCompare"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/btn_home_compare"
-            android:text="搜索对比"
-            android:gravity="center_horizontal"
-            android:background="#fff"/>
-        <Button
-            android:id="@+id/homeScan"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/btn_home_scan"
-            android:text="扫码对比"
-            android:gravity="center_horizontal"
-            android:background="#fff"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
+                <Button
+                    android:id="@+id/homeAnalyse"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/btn_home_analyse"
+                    android:text="饮食分析"
+                    android:gravity="center"
+                    android:background="#fff"/>
+                <Button
+                    android:id="@+id/homeCompare"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/btn_home_compare"
+                    android:text="搜索对比"
+                    android:gravity="center_horizontal"
+                    android:background="#fff"/>
+                <Button
+                    android:id="@+id/homeScan"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/btn_home_scan"
+                    android:text="扫码对比"
+                    android:gravity="center_horizontal"
+                    android:background="#fff"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@mipmap/ic_home_category_bg_9"
+                android:layout_margin="20dp">
+                <TextView
+                    android:id="@+id/tvLibGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="食物分类"
+                    android:gravity="center"
+                    android:layout_margin="10dp"/>
+                <GridView
+                    android:id="@+id/gvLibGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="420dp"
+                    android:numColumns="3">
+
+                </GridView>
 
 
-    </LinearLayout>
-    <ListView
-        android:id="@+id/lvLibrary"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3.5">
-    </ListView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@mipmap/ic_home_category_bg_9"
+                android:layout_margin="20dp">
+                <TextView
+                    android:id="@+id/tvLibBrand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="热门品牌"
+                    android:gravity="center"
+                    android:layout_margin="10dp"/>
+                <GridView
+                    android:id="@+id/gvLibBrand"
+                    android:layout_width="match_parent"
+                    android:layout_height="520dp"
+                    android:numColumns="3">
+
+                </GridView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@mipmap/ic_home_category_bg_9"
+                android:layout_margin="20dp">
+                <TextView
+                    android:id="@+id/tvLibRest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="连锁餐饮"
+                    android:gravity="center"
+                    android:layout_margin="10dp"/>
+                <GridView
+                    android:id="@+id/gvLibRest"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:numColumns="3">
+
+                </GridView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
 
 </LinearLayout>

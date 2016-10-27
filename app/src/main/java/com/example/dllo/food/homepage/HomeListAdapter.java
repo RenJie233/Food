@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.food.R;
+import com.example.dllo.food.entity.HomePageBean;
 import com.example.dllo.food.volleyandgson.VolleySingleTon;
 
 /**
@@ -18,6 +19,9 @@ public class HomeListAdapter extends BaseAdapter {
 
     Context context;
     HomePageBean bean;
+    private static final int TYPE_RIGHT_PIC = 0;
+    private static final int TYPE_THREE_PIC = 1;
+    private static final int TYPE_EVALUATION = 2;
 
     public HomeListAdapter(Context context) {
         this.context = context;
@@ -45,11 +49,11 @@ public class HomeListAdapter extends BaseAdapter {
     @Override
     public int getItemViewType(int position) {
         if (bean.getFeeds().get(position).getContent_type() == 1) {
-            return 1;
+            return TYPE_RIGHT_PIC;
         } else if (bean.getFeeds().get(position).getContent_type() == 2) {
-            return 2;
+            return TYPE_THREE_PIC;
         } else {
-            return 4;
+            return TYPE_EVALUATION;
         }
     }
 
@@ -66,17 +70,17 @@ public class HomeListAdapter extends BaseAdapter {
         int type = getItemViewType(position);
         if (convertView == null) {
             switch (type) {
-                case 1:
+                case TYPE_RIGHT_PIC:
                     convertView = LayoutInflater.from(context).inflate(R.layout.item_right_pic, parent, false);
                     rightPicViewHolder = new RightPicViewHolder(convertView);
                     convertView.setTag(rightPicViewHolder);
                     break;
-                case 2:
+                case TYPE_THREE_PIC:
                     convertView = LayoutInflater.from(context).inflate(R.layout.item_three_pic, parent, false);
                     threePicViewHolder = new ThreePicViewHolder(convertView);
                     convertView.setTag(threePicViewHolder);
                     break;
-                case 4:
+                case TYPE_EVALUATION:
                     convertView = LayoutInflater.from(context).inflate(R.layout.item_evaluation_list, parent, false);
                     viewHolder = new EvaluationViewHolder(convertView);
                     convertView.setTag(viewHolder);
@@ -87,26 +91,26 @@ public class HomeListAdapter extends BaseAdapter {
 
         } else {
             switch (type) {
-                case 1:
+                case TYPE_RIGHT_PIC:
                     rightPicViewHolder = (RightPicViewHolder) convertView.getTag();
                     break;
-                case 2:
+                case TYPE_THREE_PIC:
                     threePicViewHolder = (ThreePicViewHolder) convertView.getTag();
                     break;
-                case 4:
+                case TYPE_EVALUATION:
                     viewHolder = (EvaluationViewHolder) convertView.getTag();
                     break;
             }
 
         }
         switch (type) {
-            case 1:
+            case TYPE_RIGHT_PIC:
                 rightPicViewHolder.tvRightTitle.setText(bean.getFeeds().get(position).getTitle());
                 rightPicViewHolder.tvRightSource.setText(bean.getFeeds().get(position).getSource());
                 rightPicViewHolder.tvRightTail.setText(bean.getFeeds().get(position).getTail());
                 VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(0), rightPicViewHolder.ivRightPic);
                 break;
-            case 2:
+            case TYPE_THREE_PIC:
                 threePicViewHolder.tvThreeTitle.setText(bean.getFeeds().get(position).getTitle());
                 threePicViewHolder.tvThreeSource.setText(bean.getFeeds().get(position).getSource());
                 threePicViewHolder.tvThreeTail.setText(bean.getFeeds().get(position).getTail());
@@ -114,7 +118,7 @@ public class HomeListAdapter extends BaseAdapter {
                 VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(1), threePicViewHolder.ivThreeTwo);
                 VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(2), threePicViewHolder.ivThreeThr);
                 break;
-            case 4:
+            case TYPE_EVALUATION:
                 VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getBackground(), viewHolder.ivEvaBg);
                 viewHolder.tvEvaSource.setText(bean.getFeeds().get(position).getSource());
                 viewHolder.tvEvaTitle.setText(bean.getFeeds().get(position).getTitle());

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.food.R;
+import com.example.dllo.food.entity.FirstPageBean;
 import com.example.dllo.food.volleyandgson.VolleySingleTon;
 
 /**

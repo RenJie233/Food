@@ -13,6 +13,12 @@
         android:layout_height="0dp"
         android:layout_weight="10">
     </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorNormal">
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -33,7 +39,8 @@
                 android:layout_gravity="center"
                 android:text="食物百科"
                 android:gravity="center_horizontal"
-                android:checked="true"/>
+                android:checked="true"
+                android:textColor="@color/color_radiobutton"/>
             <RadioButton
                 android:id="@+id/homeTab"
                 android:layout_width="0dp"
@@ -43,7 +50,8 @@
                 android:text="逛吃"
                 android:gravity="center_horizontal"
                 android:button="@null"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textColor="@color/color_radiobutton"/>
             <RadioButton
                 android:id="@+id/myTab"
                 android:layout_width="0dp"
@@ -53,7 +61,8 @@
                 android:text="我的"
                 android:gravity="center_horizontal"
                 android:button="@null"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textColor="@color/color_radiobutton"/>
 
         </RadioGroup>
 
