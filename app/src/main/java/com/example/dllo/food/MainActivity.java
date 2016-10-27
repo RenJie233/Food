@@ -17,6 +17,8 @@ public class MainActivity extends BaseAty implements View.OnClickListener{
 
 
 
+    // 推送失败 重新上传测试
+
     @Override
     protected int getLayout() {
         return R.layout.activity_main;
