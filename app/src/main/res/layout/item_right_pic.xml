@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvRightTitle"
+            android:id="@+id/rightTitleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <LinearLayout
@@ -19,13 +19,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp">
             <TextView
-                android:id="@+id/tvRightSource"
+                android:id="@+id/rightSourceTv"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
                 />
             <TextView
-                android:id="@+id/tvRightTail"
+                android:id="@+id/rightTailTv"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/ivRightPic"
+        android:id="@+id/rightPicIv"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"/>

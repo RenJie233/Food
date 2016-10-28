@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <ScrollView
-        android:id="@+id/svLibrary"
+        android:id="@+id/librarySv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -78,14 +78,14 @@
                 android:background="@mipmap/ic_home_category_bg_9"
                 android:layout_margin="20dp">
                 <TextView
-                    android:id="@+id/tvLibGroup"
+                    android:id="@+id/libGroupTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="食物分类"
                     android:gravity="center"
                     android:layout_margin="10dp"/>
                 <GridView
-                    android:id="@+id/gvLibGroup"
+                    android:id="@+id/libGroupGv"
                     android:layout_width="match_parent"
                     android:layout_height="420dp"
                     android:numColumns="3">
@@ -101,14 +101,14 @@
                 android:background="@mipmap/ic_home_category_bg_9"
                 android:layout_margin="20dp">
                 <TextView
-                    android:id="@+id/tvLibBrand"
+                    android:id="@+id/libBrandTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="热门品牌"
                     android:gravity="center"
                     android:layout_margin="10dp"/>
                 <GridView
-                    android:id="@+id/gvLibBrand"
+                    android:id="@+id/libBrandGv"
                     android:layout_width="match_parent"
                     android:layout_height="520dp"
                     android:numColumns="3">
@@ -123,14 +123,14 @@
                 android:background="@mipmap/ic_home_category_bg_9"
                 android:layout_margin="20dp">
                 <TextView
-                    android:id="@+id/tvLibRest"
+                    android:id="@+id/libRestTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="连锁餐饮"
                     android:gravity="center"
                     android:layout_margin="10dp"/>
                 <GridView
-                    android:id="@+id/gvLibRest"
+                    android:id="@+id/libRestGv"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
                     android:numColumns="3">

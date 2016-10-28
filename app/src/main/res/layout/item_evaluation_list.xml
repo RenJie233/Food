@@ -3,26 +3,27 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
     <ImageView
-        android:id="@+id/ivEvaBg"
+        android:id="@+id/evaBgIv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:scaleType="centerInside"
+        android:layout_centerInParent="true"/>
     <TextView
-        android:id="@+id/tvEvaSource"
+        android:id="@+id/evaSourceTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="25dp"
         android:textColor="#fff"/>
     <TextView
-        android:id="@+id/tvEvaTitle"
+        android:id="@+id/evaTitleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textColor="#fff"/>
     <TextView
-        android:id="@+id/tvEvaTail"
+        android:id="@+id/evaTailTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

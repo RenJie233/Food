@@ -30,19 +30,14 @@ public class LibGridAdapter extends BaseAdapter {
         this.context = context;
     }
 
-//    public void setBean(LibraryBean bean) {
-//        this.bean = bean;
-//    }
 
     @Override
     public int getCount() {
-//        return bean.getGroup().get(0).getCategories() == null ? 0 : bean.getGroup().get(0).getCategories().size();
         return categoriesBeen.size();
     }
 
     @Override
     public Object getItem(int position) {
-//        return bean.getGroup().get(0).getCategories().get(position);
         return categoriesBeen.get(position);
     }
 
@@ -61,21 +56,19 @@ public class LibGridAdapter extends BaseAdapter {
         } else {
             viewHolder = (GridViewHolder) convertView.getTag();
         }
-//        viewHolder.tvItemGrid.setText(bean.getGroup().get(0).getCategories().get(position).getName());
-//        VolleySingleTon.getInstance().getImage(bean.getGroup().get(0).getCategories().get(position).getImage_url(), viewHolder.ivItemGrid);
-        viewHolder.tvItemGrid.setText(categoriesBeen.get(position).getName());
-        VolleySingleTon.getInstance().getImage(categoriesBeen.get(position).getImage_url(), viewHolder.ivItemGrid);
+        viewHolder.itemGridTV.setText(categoriesBeen.get(position).getName());
+        VolleySingleTon.getInstance().getImage(categoriesBeen.get(position).getImage_url(), viewHolder.itemGridIv);
         return convertView;
     }
 
     private class GridViewHolder {
 
-        private final ImageView ivItemGrid;
-        private final TextView tvItemGrid;
+        private ImageView itemGridIv;
+        private TextView itemGridTV;
 
         public GridViewHolder(View convertView) {
-            ivItemGrid = (ImageView) convertView.findViewById(R.id.ivItemGrid);
-            tvItemGrid = (TextView) convertView.findViewById(R.id.tvItemGrid);
+            itemGridIv = (ImageView) convertView.findViewById(R.id.itemGridIv);
+            itemGridTV = (TextView) convertView.findViewById(R.id.itemGridTv);
         }
     }
 }

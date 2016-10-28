@@ -25,6 +25,7 @@ public class WelcomeActivity extends BaseAty {
             public void onFinish() {
                 Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         };
         timer.start();

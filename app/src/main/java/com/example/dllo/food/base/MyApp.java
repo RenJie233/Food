@@ -1,4 +1,4 @@
-package com.example.dllo.food.volleyandgson;
+package com.example.dllo.food.base;
 
 import android.app.Application;
 import android.content.Context;

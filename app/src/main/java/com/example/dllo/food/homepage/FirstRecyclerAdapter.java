@@ -36,18 +36,18 @@ public class FirstRecyclerAdapter extends RecyclerView.Adapter<FirstRecyclerAdap
 
     @Override
     public void onBindViewHolder(FirstRecyclerAdapter.FirstViewHolder holder, int position) {
-        VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getCard_image(), holder.ivHomePic);
-        holder.tvHomeName.setText(bean.getFeeds().get(position).getPublisher());
-        VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getPublisher_avatar(), holder.ivHomeIcon);
-        holder.tvHomeTitle.setText(bean.getFeeds().get(position).getTitle());
+        VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getCard_image(), holder.homePicIv);
+        holder.homeNameTv.setText(bean.getFeeds().get(position).getPublisher());
+        VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getPublisher_avatar(), holder.homeIconIv);
+        holder.homeTitleTv.setText(bean.getFeeds().get(position).getTitle());
 
         if (bean.getFeeds().get(position).getDescription().length() > 0){
-            holder.tvHomeDes.setText(bean.getFeeds().get(position).getDescription());
+            holder.homeDesTv.setText(bean.getFeeds().get(position).getDescription());
         } else {
-            holder.tvHomeDes.setVisibility(View.GONE);
+            holder.homeDesTv.setVisibility(View.GONE);
         }
 
-        holder.tvHomeCount.setText(bean.getFeeds().get(position).getLike_ct() + "");
+        holder.homeCountTv.setText(bean.getFeeds().get(position).getLike_ct() + "");
     }
 
     @Override
@@ -57,21 +57,21 @@ public class FirstRecyclerAdapter extends RecyclerView.Adapter<FirstRecyclerAdap
 
     class FirstViewHolder extends RecyclerView.ViewHolder {
 
-        private final ImageView ivHomePic;
-        private final TextView tvHomeTitle;
-        private final ImageView ivHomeIcon;
-        private final TextView tvHomeName;
-        private final TextView tvHomeCount;
-        private final TextView tvHomeDes;
+        private ImageView homePicIv;
+        private TextView homeTitleTv;
+        private ImageView homeIconIv;
+        private TextView homeNameTv;
+        private TextView homeCountTv;
+        private TextView homeDesTv;
 
         public FirstViewHolder(View itemView) {
             super(itemView);
-            ivHomePic = (ImageView) itemView.findViewById(R.id.ivHomePic);
-            tvHomeTitle = (TextView) itemView.findViewById(R.id.tvHomeTitle);
-            ivHomeIcon = (ImageView) itemView.findViewById(R.id.ivHomeIcon);
-            tvHomeName = (TextView) itemView.findViewById(R.id.tvHomeName);
-            tvHomeCount = (TextView) itemView.findViewById(R.id.tvHomeCount);
-            tvHomeDes = (TextView) itemView.findViewById(R.id.tvHomeDes);
+            homePicIv = (ImageView) itemView.findViewById(R.id.homePicIv);
+            homeTitleTv = (TextView) itemView.findViewById(R.id.homeTitleTv);
+            homeIconIv = (ImageView) itemView.findViewById(R.id.homeIconIv);
+            homeNameTv = (TextView) itemView.findViewById(R.id.homeNameTv);
+            homeCountTv = (TextView) itemView.findViewById(R.id.homeCountTv);
+            homeDesTv = (TextView) itemView.findViewById(R.id.homeDesTv);
         }
     }
 }

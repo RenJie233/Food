@@ -7,6 +7,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.example.dllo.food.R;
+import com.example.dllo.food.base.MyApp;
 
 /**
  * Created by Ren on 16/10/25.

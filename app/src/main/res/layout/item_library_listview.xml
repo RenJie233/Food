@@ -5,12 +5,12 @@
               android:layout_height="match_parent"
     android:background="@mipmap/ic_home_category_bg_9">
     <TextView
-        android:id="@+id/tvLibList"
+        android:id="@+id/libListTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvLibList"
+        android:id="@+id/libListRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>

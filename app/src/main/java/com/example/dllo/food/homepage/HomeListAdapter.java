@@ -46,6 +46,7 @@ public class HomeListAdapter extends BaseAdapter {
         return position;
     }
 
+    // 判断并返回item布局类型 int
     @Override
     public int getItemViewType(int position) {
         if (bean.getFeeds().get(position).getContent_type() == 1) {
@@ -105,24 +106,24 @@ public class HomeListAdapter extends BaseAdapter {
         }
         switch (type) {
             case TYPE_RIGHT_PIC:
-                rightPicViewHolder.tvRightTitle.setText(bean.getFeeds().get(position).getTitle());
-                rightPicViewHolder.tvRightSource.setText(bean.getFeeds().get(position).getSource());
-                rightPicViewHolder.tvRightTail.setText(bean.getFeeds().get(position).getTail());
-                VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(0), rightPicViewHolder.ivRightPic);
+                rightPicViewHolder.rightTitleTv.setText(bean.getFeeds().get(position).getTitle());
+                rightPicViewHolder.rightSourceTv.setText(bean.getFeeds().get(position).getSource());
+                rightPicViewHolder.rightTailTv.setText(bean.getFeeds().get(position).getTail());
+                VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(0), rightPicViewHolder.rightPicIv);
                 break;
             case TYPE_THREE_PIC:
-                threePicViewHolder.tvThreeTitle.setText(bean.getFeeds().get(position).getTitle());
-                threePicViewHolder.tvThreeSource.setText(bean.getFeeds().get(position).getSource());
-                threePicViewHolder.tvThreeTail.setText(bean.getFeeds().get(position).getTail());
-                VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(0), threePicViewHolder.ivThreeOne);
-                VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(1), threePicViewHolder.ivThreeTwo);
-                VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(2), threePicViewHolder.ivThreeThr);
+                threePicViewHolder.threeTitleTv.setText(bean.getFeeds().get(position).getTitle());
+                threePicViewHolder.threeSourceTv.setText(bean.getFeeds().get(position).getSource());
+                threePicViewHolder.threeTailTv.setText(bean.getFeeds().get(position).getTail());
+                VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(0), threePicViewHolder.threeOneIv);
+                VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(1), threePicViewHolder.threeTwoIv);
+                VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(2), threePicViewHolder.threeThrIv);
                 break;
             case TYPE_EVALUATION:
-                VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getBackground(), viewHolder.ivEvaBg);
-                viewHolder.tvEvaSource.setText(bean.getFeeds().get(position).getSource());
-                viewHolder.tvEvaTitle.setText(bean.getFeeds().get(position).getTitle());
-                viewHolder.tvEvaTail.setText(bean.getFeeds().get(position).getTail());
+                VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getBackground(), viewHolder.evaBgIv);
+                viewHolder.evaSourceTv.setText(bean.getFeeds().get(position).getSource());
+                viewHolder.evaTitleTv.setText(bean.getFeeds().get(position).getTitle());
+                viewHolder.evaTailTv.setText(bean.getFeeds().get(position).getTail());
                 break;
         }
 
@@ -131,51 +132,51 @@ public class HomeListAdapter extends BaseAdapter {
 
     private class EvaluationViewHolder {
 
-        private final TextView tvEvaSource;
-        private final TextView tvEvaTitle;
-        private final TextView tvEvaTail;
-        private final ImageView ivEvaBg;
+        private TextView evaSourceTv;
+        private TextView evaTitleTv;
+        private TextView evaTailTv;
+        private ImageView evaBgIv;
 
 
         public EvaluationViewHolder(View convertView) {
-            ivEvaBg = (ImageView) convertView.findViewById(R.id.ivEvaBg);
-            tvEvaSource = (TextView) convertView.findViewById(R.id.tvEvaSource);
-            tvEvaTitle = (TextView) convertView.findViewById(R.id.tvEvaTitle);
-            tvEvaTail = (TextView) convertView.findViewById(R.id.tvEvaTail);
+            evaBgIv = (ImageView) convertView.findViewById(R.id.evaBgIv);
+            evaSourceTv = (TextView) convertView.findViewById(R.id.evaSourceTv);
+            evaTitleTv = (TextView) convertView.findViewById(R.id.evaTitleTv);
+            evaTailTv = (TextView) convertView.findViewById(R.id.evaTailTv);
         }
     }
 
     private class RightPicViewHolder {
 
-        private final TextView tvRightTitle;
-        private final TextView tvRightTail;
-        private final TextView tvRightSource;
-        private final ImageView ivRightPic;
+        private TextView rightTitleTv;
+        private TextView rightTailTv;
+        private TextView rightSourceTv;
+        private ImageView rightPicIv;
 
         public RightPicViewHolder(View convertView) {
-            tvRightTitle = (TextView) convertView.findViewById(R.id.tvRightTitle);
-            tvRightTail = (TextView) convertView.findViewById(R.id.tvRightTail);
-            tvRightSource = (TextView) convertView.findViewById(R.id.tvRightSource);
-            ivRightPic = (ImageView) convertView.findViewById(R.id.ivRightPic);
+            rightTitleTv = (TextView) convertView.findViewById(R.id.rightTitleTv);
+            rightTailTv = (TextView) convertView.findViewById(R.id.rightTailTv);
+            rightSourceTv = (TextView) convertView.findViewById(R.id.rightSourceTv);
+            rightPicIv = (ImageView) convertView.findViewById(R.id.rightPicIv);
         }
     }
 
     private class ThreePicViewHolder {
 
-        private final TextView tvThreeTitle;
-        private final TextView tvThreeSource;
-        private final TextView tvThreeTail;
-        private final ImageView ivThreeOne;
-        private final ImageView ivThreeTwo;
-        private final ImageView ivThreeThr;
+        private TextView threeTitleTv;
+        private TextView threeSourceTv;
+        private TextView threeTailTv;
+        private ImageView threeOneIv;
+        private ImageView threeTwoIv;
+        private ImageView threeThrIv;
 
         public ThreePicViewHolder(View convertView) {
-            tvThreeTitle = (TextView) convertView.findViewById(R.id.tvThreeTitle);
-            tvThreeSource = (TextView) convertView.findViewById(R.id.tvThreeSource);
-            tvThreeTail = (TextView) convertView.findViewById(R.id.tvThreeTail);
-            ivThreeOne = (ImageView) convertView.findViewById(R.id.ivThreeOne);
-            ivThreeTwo = (ImageView) convertView.findViewById(R.id.ivThreeTwo);
-            ivThreeThr = (ImageView) convertView.findViewById(R.id.ivThreeThr);
+            threeTitleTv = (TextView) convertView.findViewById(R.id.threeTitleTv);
+            threeSourceTv = (TextView) convertView.findViewById(R.id.threeSourceTv);
+            threeTailTv = (TextView) convertView.findViewById(R.id.threeTailTv);
+            threeOneIv = (ImageView) convertView.findViewById(R.id.threeOneIv);
+            threeTwoIv = (ImageView) convertView.findViewById(R.id.threeTwoIv);
+            threeThrIv = (ImageView) convertView.findViewById(R.id.threeThrIv);
 
         }
     }

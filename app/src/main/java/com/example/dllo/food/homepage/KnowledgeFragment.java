@@ -5,7 +5,7 @@ import android.widget.ListView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.food.R;
-import com.example.dllo.food.tools.UrlValues;
+import com.example.dllo.food.entity.UrlValues;
 import com.example.dllo.food.base.BaseFragment;
 import com.example.dllo.food.entity.HomePageBean;
 import com.example.dllo.food.volleyandgson.GsonRequest;
@@ -15,7 +15,7 @@ import com.example.dllo.food.volleyandgson.VolleySingleTon;
  * Created by Ren on 16/10/24.
  */
 public class KnowledgeFragment extends BaseFragment {
-    private ListView lvHomeKnowledge;
+    private ListView homeKnowledgeLv;
     @Override
     protected int getLayout() {
         return R.layout.fragment_knowledge;
@@ -23,7 +23,7 @@ public class KnowledgeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        lvHomeKnowledge = bindView(R.id.lvHomeKnowledge);
+        homeKnowledgeLv = bindView(R.id.homeKnowledgeLv);
 
     }
 
@@ -34,7 +34,7 @@ public class KnowledgeFragment extends BaseFragment {
             public void onResponse(HomePageBean response) {
                 HomeListAdapter adapter = new HomeListAdapter(getActivity());
                 adapter.setBean(response);
-                lvHomeKnowledge.setAdapter(adapter);
+                homeKnowledgeLv.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
             @Override

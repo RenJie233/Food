@@ -10,7 +10,7 @@ import com.example.dllo.food.base.BaseFragment;
  * Created by Ren on 16/10/21.
  */
 public class MyFragment extends BaseFragment implements View.OnClickListener{
-    private RelativeLayout rLMyPhoto, rlMyCollect, rlMyUpload, rlMyOrder;
+    private RelativeLayout myPhotoRl, myCollectRl, myUploadRl, myOrderRl;
     @Override
     protected int getLayout() {
         return R.layout.fragment_my;
@@ -18,12 +18,12 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     protected void initView() {
-        rLMyPhoto = bindView(R.id.rlMyPhoto);
-        rlMyCollect = bindView(R.id.rlMyCollect);
-        rlMyUpload = bindView(R.id.rlMyUpload);
-        rlMyOrder = bindView(R.id.rlMyOrder);
+        myPhotoRl = bindView(R.id.myPhotoRl);
+        myCollectRl = bindView(R.id.myCollectRl);
+        myUploadRl = bindView(R.id.myUploadRl);
+        myOrderRl = bindView(R.id.myOrderRl);
 
-        setClickListener(this, rLMyPhoto, rlMyCollect, rlMyUpload, rlMyOrder);
+        setClickListener(this, myPhotoRl, myCollectRl, myUploadRl, myOrderRl);
     }
 
     @Override
@@ -35,13 +35,13 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.rlMyPhoto:
+            case R.id.myPhotoRl:
                 break;
-            case R.id.rlMyCollect:
+            case R.id.myCollectRl:
                 break;
-            case R.id.rlMyUpload:
+            case R.id.myUploadRl:
                 break;
-            case R.id.rlMyOrder:
+            case R.id.myOrderRl:
                 break;
         }
     }

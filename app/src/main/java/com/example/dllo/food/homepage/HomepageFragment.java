@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class HomepageFragment extends BaseFragment{
 
-    private TabLayout tabHome;
-    private ViewPager vpHome;
+    private TabLayout homeTab;
+    private ViewPager homeVp;
     private ArrayList<Fragment> fragments;
 
 
@@ -26,8 +26,8 @@ public class HomepageFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        tabHome = bindView(R.id.tabHome);
-        vpHome = bindView(R.id.vpHome);
+        homeTab = bindView(R.id.homeTab);
+        homeVp = bindView(R.id.homeVp);
         fragments = new ArrayList<>();
         fragments.add(new FirstPageFragment());
         fragments.add(new EvaluationFragment());
@@ -35,8 +35,8 @@ public class HomepageFragment extends BaseFragment{
         fragments.add(new FoodFragment());
         HomeFragmentAdapter adapter = new HomeFragmentAdapter(getFragmentManager());
         adapter.setFragments(fragments);
-        vpHome.setAdapter(adapter);
-        tabHome.setupWithViewPager(vpHome);
+        homeVp.setAdapter(adapter);
+        homeTab.setupWithViewPager(homeVp);
 
     }
 

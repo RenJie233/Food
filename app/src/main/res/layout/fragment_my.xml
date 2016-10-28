@@ -19,6 +19,7 @@
             android:src="@mipmap/ic_analyse_default"
             app:isCircle="true"/>
         <Button
+            android:id="@+id/loginBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="点击登录"
@@ -36,7 +37,7 @@
         android:layout_weight="3"
         android:background="#fff">
         <RelativeLayout
-            android:id="@+id/rlMyPhoto"
+            android:id="@+id/myPhotoRl"
             android:layout_width="match_parent"
             android:layout_height="50dp">
             <ImageView
@@ -63,7 +64,7 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/rlMyCollect"
+            android:id="@+id/myCollectRl"
             android:layout_width="match_parent"
             android:layout_height="50dp">
             <ImageView
@@ -90,7 +91,7 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/rlMyUpload"
+            android:id="@+id/myUploadRl"
             android:layout_width="match_parent"
             android:layout_height="50dp">
             <ImageView
@@ -117,7 +118,7 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/rlMyOrder"
+            android:id="@+id/myOrderRl"
             android:layout_width="match_parent"
             android:layout_height="50dp">
             <ImageView
