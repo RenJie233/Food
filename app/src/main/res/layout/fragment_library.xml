@@ -69,81 +69,105 @@
                     android:drawableTop="@drawable/btn_home_scan"
                     android:text="扫码对比"
                     android:gravity="center_horizontal"
-                    android:background="#fff"/>
+                    android:background="@color/colorWhite"/>
             </LinearLayout>
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@mipmap/ic_home_category_bg_9"
+                android:layout_height="440dp"
                 android:layout_margin="20dp">
-                <TextView
-                    android:id="@+id/libGroupTv"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_lib_bg"
+                    android:scaleType="fitStart"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/libGroupTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="食物分类"
+                        android:gravity="center"
+                        android:layout_margin="10dp"/>
+                    <GridView
+                        android:id="@+id/libGroupGv"
+                        android:layout_width="match_parent"
+                        android:layout_height="420dp"
+                        android:numColumns="3"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/colorWhite">
+                    </GridView>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="540dp"
+                android:layout_margin="20dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_lib_bg"
+                    android:scaleType="fitStart"/>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="食物分类"
-                    android:gravity="center"
-                    android:layout_margin="10dp"/>
-                <GridView
-                    android:id="@+id/libGroupGv"
-                    android:layout_width="match_parent"
-                    android:layout_height="420dp"
-                    android:numColumns="3">
-
-                </GridView>
-
-
-            </LinearLayout>
-            <LinearLayout
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/libBrandTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="热门品牌"
+                        android:gravity="center"
+                        android:layout_margin="10dp"/>
+                    <GridView
+                        android:id="@+id/libBrandGv"
+                        android:layout_width="match_parent"
+                        android:layout_height="520dp"
+                        android:numColumns="3"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/colorWhite">
+                    </GridView>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@mipmap/ic_home_category_bg_9"
+                android:layout_height="240dp"
                 android:layout_margin="20dp">
-                <TextView
-                    android:id="@+id/libBrandTv"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_lib_bg"
+                    android:scaleType="fitStart"/>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="热门品牌"
-                    android:gravity="center"
-                    android:layout_margin="10dp"/>
-                <GridView
-                    android:id="@+id/libBrandGv"
-                    android:layout_width="match_parent"
-                    android:layout_height="520dp"
-                    android:numColumns="3">
-
-                </GridView>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@mipmap/ic_home_category_bg_9"
-                android:layout_margin="20dp">
-                <TextView
-                    android:id="@+id/libRestTv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="连锁餐饮"
-                    android:gravity="center"
-                    android:layout_margin="10dp"/>
-                <GridView
-                    android:id="@+id/libRestGv"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:numColumns="3">
-
-                </GridView>
-
-            </LinearLayout>
-
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/libRestTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="连锁餐饮"
+                        android:gravity="center"
+                        android:layout_margin="10dp"/>
+                    <GridView
+                        android:id="@+id/libRestGv"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:numColumns="3"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/colorWhite">
+                    </GridView>
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
-
     </ScrollView>
-
-
-
-
 </LinearLayout>

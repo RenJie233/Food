@@ -15,13 +15,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="25dp"
-        android:textColor="#fff"/>
+        android:textColor="@color/colorWhite"/>
     <TextView
         android:id="@+id/evaTitleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textColor="#fff"/>
+        android:textColor="@color/colorWhite"/>
     <TextView
         android:id="@+id/evaTailTv"
         android:layout_width="wrap_content"
@@ -29,6 +29,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="190dp"
         android:drawableStart="@mipmap/ic_read"
-        android:textColor="#fff"/>
+        android:textColor="@color/colorWhite"/>
 
 </RelativeLayout>
