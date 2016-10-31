@@ -1,21 +1,22 @@
 package com.example.dllo.food.homepage;
 
-import android.widget.ListView;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.food.R;
-import com.example.dllo.food.entity.UrlValues;
 import com.example.dllo.food.base.BaseFragment;
-import com.example.dllo.food.entity.HomePageBean;
+import com.example.dllo.food.entity.HomeBean;
+import com.example.dllo.food.entity.UrlValues;
 import com.example.dllo.food.volleyandgson.GsonRequest;
 import com.example.dllo.food.volleyandgson.VolleySingleTon;
+import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 /**
  * Created by Ren on 16/10/24.
  */
 public class EvaluationFragment extends BaseFragment {
-    private ListView homeEvaluationLv;
+    private int page;
+    private PullLoadMoreRecyclerView homeEvaluationRv;
+    private HomePageAdapter adapter;
 
     @Override
     protected int getLayout() {
@@ -24,17 +25,18 @@ public class EvaluationFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        homeEvaluationLv = bindView(R.id.homeEvaluationLv);
+        homeEvaluationRv = bindView(R.id.homeEvaluationRv);
     }
 
     @Override
     protected void initData() {
-        GsonRequest<HomePageBean> gsonRequest = new GsonRequest<HomePageBean>(HomePageBean.class, UrlValues.HOME_EVALUATION, new Response.Listener<HomePageBean>() {
+        adapter = new HomePageAdapter(getActivity());
+        GsonRequest<HomeBean> gsonRequest = new GsonRequest<HomeBean>(HomeBean.class, UrlValues.HOME_HEAD + page + UrlValues.HOME_EVALUATION_FOOT, new Response.Listener<HomeBean>() {
             @Override
-            public void onResponse(HomePageBean response) {
-                HomeListAdapter adapter = new HomeListAdapter(getActivity());
+            public void onResponse(HomeBean response) {
                 adapter.setBean(response);
-                homeEvaluationLv.setAdapter(adapter);
+                homeEvaluationRv.setAdapter(adapter);
+                homeEvaluationRv.setLinearLayout();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -43,5 +45,55 @@ public class EvaluationFragment extends BaseFragment {
             }
         });
         VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+
+        // 设置下拉刷新和上拉加载
+        homeEvaluationRv.setColorSchemeResources(R.color.colorAccent);
+        homeEvaluationRv.setFooterViewText("");
+        homeEvaluationRv.setFooterViewBackgroundColor(R.color.colorTrans);
+        homeEvaluationRv.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            // 下拉刷新
+            @Override
+            public void onRefresh() {
+                page = 1;
+                GsonRequest<HomeBean> gsonRequest = new GsonRequest<HomeBean>(HomeBean.class, UrlValues.HOME_HEAD + page + UrlValues.HOME_EVALUATION_FOOT, new Response.Listener<HomeBean>() {
+                    @Override
+                    public void onResponse(HomeBean response) {
+                        adapter.setBean(response);
+                        homeEvaluationRv.setAdapter(adapter);
+                        homeEvaluationRv.setLinearLayout();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+                homeEvaluationRv.setPullLoadMoreCompleted();
+            }
+            // 上拉加载
+            @Override
+            public void onLoadMore() {
+                page += 1;
+                GsonRequest<HomeBean> gsonRequest = new GsonRequest<HomeBean>(HomeBean.class, UrlValues.HOME_HEAD + page + UrlValues.HOME_EVALUATION_FOOT, new Response.Listener<HomeBean>() {
+                    @Override
+                    public void onResponse(HomeBean response) {
+                        adapter.addBean(response);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+                homeEvaluationRv.setPullLoadMoreCompleted();
+            }
+
+        });
     }
+
+
+
+
 }

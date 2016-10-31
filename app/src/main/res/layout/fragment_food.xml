@@ -3,13 +3,13 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <ListView
-        android:id="@+id/homeFoodLv"
+    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+        android:id="@+id/homeFoodRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="10dp"
         android:scrollbars="none">
 
-    </ListView>
+    </com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
 
 </LinearLayout>

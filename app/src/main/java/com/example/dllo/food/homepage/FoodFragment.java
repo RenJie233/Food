@@ -1,21 +1,22 @@
 package com.example.dllo.food.homepage;
 
-import android.widget.ListView;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.food.R;
-import com.example.dllo.food.entity.UrlValues;
 import com.example.dllo.food.base.BaseFragment;
-import com.example.dllo.food.entity.HomePageBean;
+import com.example.dllo.food.entity.HomeBean;
+import com.example.dllo.food.entity.UrlValues;
 import com.example.dllo.food.volleyandgson.GsonRequest;
 import com.example.dllo.food.volleyandgson.VolleySingleTon;
+import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 /**
  * Created by Ren on 16/10/24.
  */
 public class FoodFragment extends BaseFragment {
-    private ListView homeFoodLv;
+    private int page;
+    private PullLoadMoreRecyclerView homeFoodRv;
+    private HomePageAdapter adapter;
     @Override
     protected int getLayout() {
         return R.layout.fragment_food;
@@ -23,18 +24,19 @@ public class FoodFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        homeFoodLv = bindView(R.id.homeFoodLv);
-
+        homeFoodRv = bindView(R.id.homeFoodRv);
     }
 
     @Override
     protected void initData() {
-        GsonRequest<HomePageBean> gsonRequest = new GsonRequest<HomePageBean>(HomePageBean.class, UrlValues.HOME_FOOD, new Response.Listener<HomePageBean>() {
+        adapter = new HomePageAdapter(getActivity());
+        page = 1;
+        GsonRequest<HomeBean> gsonRequest = new GsonRequest<HomeBean>(HomeBean.class, UrlValues.HOME_HEAD + page + UrlValues.HOME_FOOD_FOOT, new Response.Listener<HomeBean>() {
             @Override
-            public void onResponse(HomePageBean response) {
-                HomeListAdapter adapter = new HomeListAdapter(getActivity());
+            public void onResponse(HomeBean response) {
                 adapter.setBean(response);
-                homeFoodLv.setAdapter(adapter);
+                homeFoodRv.setAdapter(adapter);
+                homeFoodRv.setLinearLayout();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -43,5 +45,50 @@ public class FoodFragment extends BaseFragment {
             }
         });
         VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+
+        homeFoodRv.setColorSchemeResources(R.color.colorAccent);
+        homeFoodRv.setFooterViewText("");
+        homeFoodRv.setFooterViewBackgroundColor(R.color.colorTrans);
+
+        homeFoodRv.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                page = 1;
+                GsonRequest<HomeBean> gsonRequest = new GsonRequest<HomeBean>(HomeBean.class, UrlValues.HOME_HEAD + page + UrlValues.HOME_FOOD_FOOT, new Response.Listener<HomeBean>() {
+                    @Override
+                    public void onResponse(HomeBean response) {
+                        adapter.setBean(response);
+                        homeFoodRv.setAdapter(adapter);
+                        homeFoodRv.setLinearLayout();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+                homeFoodRv.setPullLoadMoreCompleted();
+            }
+
+            @Override
+            public void onLoadMore() {
+                page += 1;
+                GsonRequest<HomeBean> gsonRequest = new GsonRequest<HomeBean>(HomeBean.class, UrlValues.HOME_HEAD + page + UrlValues.HOME_FOOD_FOOT, new Response.Listener<HomeBean>() {
+                    @Override
+                    public void onResponse(HomeBean response) {
+                        adapter.addBean(response);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+                homeFoodRv.setPullLoadMoreCompleted();
+            }
+        });
+
     }
 }

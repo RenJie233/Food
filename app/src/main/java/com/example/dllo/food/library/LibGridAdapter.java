@@ -24,6 +24,7 @@ public class LibGridAdapter extends BaseAdapter {
 
     public void setCategoriesBeen(ArrayList<LibraryBean.GroupBean.CategoriesBean> categoriesBeen) {
         this.categoriesBeen = categoriesBeen;
+        notifyDataSetChanged();
     }
 
     public LibGridAdapter(Context context) {

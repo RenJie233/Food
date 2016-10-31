@@ -3,9 +3,9 @@ package com.example.dllo.food.entity;
 import java.util.List;
 
 /**
- * Created by Ren on 16/10/25.
+ * Created by Ren on 16/10/31.
  */
-public class HomePageBean {
+public class HomeBean {
     /**
      * page : 1
      * total_pages : 7
@@ -26,6 +26,12 @@ public class HomePageBean {
      */
 
     private List<FeedsBean> feeds;
+
+    public void addData(List<FeedsBean> feeds) {
+        for (int i = 0; i < feeds.size(); i++) {
+            this.feeds.add(this.feeds.size(), feeds.get(i));
+        }
+    }
 
     public String getPage() {
         return page;
@@ -51,6 +57,8 @@ public class HomePageBean {
         this.feeds = feeds;
     }
 
+
+
     public static class FeedsBean {
         private int item_id;
         private String source;
@@ -61,8 +69,51 @@ public class HomePageBean {
         private String link;
         private int content_type;
         private List<String> images;
+        private String card_image;
+        private String publisher;
+        private String publisher_avatar;
+        private String description;
+        private int like_ct;
 
+        public String getCard_image() {
+            return card_image;
+        }
 
+        public void setCard_image(String card_image) {
+            this.card_image = card_image;
+        }
+
+        public String getPublisher() {
+            return publisher;
+        }
+
+        public void setPublisher(String publisher) {
+            this.publisher = publisher;
+        }
+
+        public String getPublisher_avatar() {
+            return publisher_avatar;
+        }
+
+        public void setPublisher_avatar(String publisher_avatar) {
+            this.publisher_avatar = publisher_avatar;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public int getLike_ct() {
+            return like_ct;
+        }
+
+        public void setLike_ct(int like_ct) {
+            this.like_ct = like_ct;
+        }
 
         private List<FeedsBean> feeds;
 

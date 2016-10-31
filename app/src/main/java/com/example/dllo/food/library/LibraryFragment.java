@@ -1,14 +1,14 @@
 package com.example.dllo.food.library;
 
 import android.widget.GridView;
-import android.widget.ScrollView;
+import android.widget.LinearLayout;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.food.R;
-import com.example.dllo.food.entity.UrlValues;
 import com.example.dllo.food.base.BaseFragment;
 import com.example.dllo.food.entity.LibraryBean;
+import com.example.dllo.food.entity.UrlValues;
 import com.example.dllo.food.volleyandgson.GsonRequest;
 import com.example.dllo.food.volleyandgson.VolleySingleTon;
 
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class LibraryFragment extends BaseFragment {
     private GridView libGroupGv, libBrandGv, libRestGv;
-    private ScrollView librarySv;
+    private LinearLayout libLL;
 
 
     @Override
@@ -32,8 +32,10 @@ public class LibraryFragment extends BaseFragment {
         libGroupGv = bindView(R.id.libGroupGv);
         libBrandGv = bindView(R.id.libBrandGv);
         libRestGv = bindView(R.id.libRestGv);
-        librarySv = bindView(R.id.librarySv);
-        librarySv.smoothScrollBy(0,20);
+        libLL = bindView(R.id.libLL);
+        libLL.setFocusable(true);
+        libLL.setFocusableInTouchMode(true);
+        libLL.requestFocus();
     }
 
     @Override
@@ -41,19 +43,18 @@ public class LibraryFragment extends BaseFragment {
         GsonRequest<LibraryBean> gsonRequest = new GsonRequest<LibraryBean>(LibraryBean.class, UrlValues.LIBRARY, new Response.Listener<LibraryBean>() {
             @Override
             public void onResponse(LibraryBean response) {
+                // 食物分类
                 LibGridAdapter groupAdapter = new LibGridAdapter(getActivity());
                 groupAdapter.setCategoriesBeen((ArrayList<LibraryBean.GroupBean.CategoriesBean>) response.getGroup().get(0).getCategories());
                 libGroupGv.setAdapter(groupAdapter);
-
+                // 热门品牌
                 LibGridAdapter brandAdapter = new LibGridAdapter(getActivity());
                 brandAdapter.setCategoriesBeen((ArrayList<LibraryBean.GroupBean.CategoriesBean>) response.getGroup().get(1).getCategories());
                 libBrandGv.setAdapter(brandAdapter);
-
+                // 连锁餐饮
                 LibGridAdapter restAdapter = new LibGridAdapter(getActivity());
                 restAdapter.setCategoriesBeen((ArrayList<LibraryBean.GroupBean.CategoriesBean>) response.getGroup().get(2).getCategories());
                 libRestGv.setAdapter(restAdapter);
-
-
             }
         }, new Response.ErrorListener() {
             @Override

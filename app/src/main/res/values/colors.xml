@@ -8,4 +8,5 @@
     <color name="colorTabSelected">#FF6469</color>
     <color name="colorBlack">#000</color>
     <color name="colorWhite">#FFF</color>
+    <color name="colorTrans">#00ffffff</color>
 </resources>
