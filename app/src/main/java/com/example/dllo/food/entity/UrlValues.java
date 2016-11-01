@@ -11,5 +11,5 @@ public final class UrlValues {
     public static final String HOME_KNOWLEDGE_FOOT = "&category=3&per=10";
     public static final String HOME_FOOD_FOOT = "&category=4&per=10";
     public static final String LIBRARY = "http://food.boohee.com/fb/v1/categories/list";
-
+    public static final String HOME_FIRST_DETAIL_HEAD = "http://food.boohee.com/fb/v1/food_cards/";
 }

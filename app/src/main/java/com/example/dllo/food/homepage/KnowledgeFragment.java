@@ -1,5 +1,7 @@
 package com.example.dllo.food.homepage;
 
+import android.content.Intent;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.food.R;
@@ -13,7 +15,7 @@ import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 /**
  * Created by Ren on 16/10/24.
  */
-public class KnowledgeFragment extends BaseFragment {
+public class KnowledgeFragment extends BaseFragment implements HomeClickListener {
     private int page;
     private PullLoadMoreRecyclerView homeKnowledgeRv;
     private HomePageAdapter adapter;
@@ -30,6 +32,7 @@ public class KnowledgeFragment extends BaseFragment {
     @Override
     protected void initData() {
         adapter = new HomePageAdapter(getActivity());
+        adapter.setClickListener(this);
         page = 1;
         GsonRequest<HomeBean> gsonRequest = new GsonRequest<HomeBean>(HomeBean.class, UrlValues.HOME_HEAD + page + UrlValues.HOME_KNOWLEDGE_FOOT, new Response.Listener<HomeBean>() {
             @Override
@@ -90,5 +93,12 @@ public class KnowledgeFragment extends BaseFragment {
             }
         });
 
+    }
+
+    @Override
+    public void onClick(String link, int id) {
+        Intent intent = new Intent(getActivity(), HomeDetailActivity.class);
+        intent.putExtra("link", link);
+        startActivity(intent);
     }
 }

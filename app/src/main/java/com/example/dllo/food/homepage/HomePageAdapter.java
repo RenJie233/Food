@@ -6,11 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.dllo.food.R;
 import com.example.dllo.food.entity.HomeBean;
 import com.example.dllo.food.volleyandgson.VolleySingleTon;
+
 
 /**
  * Created by Ren on 16/10/31.
@@ -22,8 +25,14 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int TYPE_FIRST_NORMAL = 5;
     private static final int TYPE_FIRST_ADDS = 6;
 
+    HomeClickListener clickListener;
     Context context;
     HomeBean bean;
+
+
+    public void setClickListener(HomeClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
 
     public HomePageAdapter(Context context) {
         this.context = context;
@@ -73,7 +82,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         switch (getItemViewType(position)) {
             case TYPE_RIGHT_PIC:
                 RightPicViewHolder rightPicViewHolder = (RightPicViewHolder) holder;
@@ -81,6 +90,12 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 rightPicViewHolder.rightSourceTv.setText(bean.getFeeds().get(position).getSource());
                 rightPicViewHolder.rightTailTv.setText(bean.getFeeds().get(position).getTail());
                 VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(0), rightPicViewHolder.rightPicIv);
+                rightPicViewHolder.rightLL.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id());
+                    }
+                });
                 break;
             case TYPE_THREE_PIC:
                 ThreePicViewHolder threePicViewHolder = (ThreePicViewHolder) holder;
@@ -90,6 +105,12 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(0), threePicViewHolder.threeOneIv);
                 VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(1), threePicViewHolder.threeTwoIv);
                 VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getImages().get(2), threePicViewHolder.threeThrIv);
+                threePicViewHolder.threeLL.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id());
+                    }
+                });
                 break;
             case TYPE_EVALUATION:
                 EvaluationViewHolder viewHolder = (EvaluationViewHolder) holder;
@@ -97,6 +118,12 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 viewHolder.evaSourceTv.setText(bean.getFeeds().get(position).getSource());
                 viewHolder.evaTitleTv.setText(bean.getFeeds().get(position).getTitle());
                 viewHolder.evaTailTv.setText(bean.getFeeds().get(position).getTail());
+                viewHolder.evaRL.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id());
+                    }
+                });
                 break;
             case TYPE_FIRST_NORMAL:
                 FirstViewHolder firstViewHolder = (FirstViewHolder) holder;
@@ -112,10 +139,22 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     firstViewHolder.homeDesTv.setVisibility(View.GONE);
                 }
                 firstViewHolder.homeCountTv.setText(bean.getFeeds().get(position).getLike_ct() + "");
+                firstViewHolder.firstRL.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id());
+                    }
+                });
                 break;
             case TYPE_FIRST_ADDS:
                 AddsViewHolder addsViewHolder = (AddsViewHolder) holder;
                 VolleySingleTon.getInstance().getImage(bean.getFeeds().get(position).getCard_image(), addsViewHolder.firstAddsIv);
+                addsViewHolder.addsLL.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id());
+                    }
+                });
                 break;
         }
     }
@@ -125,11 +164,13 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return bean.getFeeds().size();
     }
 
+
     private class RightPicViewHolder extends RecyclerView.ViewHolder {
         private TextView rightTitleTv;
         private TextView rightTailTv;
         private TextView rightSourceTv;
         private ImageView rightPicIv;
+        private LinearLayout rightLL;
 
         public RightPicViewHolder(View itemView) {
             super(itemView);
@@ -137,6 +178,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             rightTailTv = (TextView) itemView.findViewById(R.id.rightTailTv);
             rightSourceTv = (TextView) itemView.findViewById(R.id.rightSourceTv);
             rightPicIv = (ImageView) itemView.findViewById(R.id.rightPicIv);
+            rightLL = (LinearLayout) itemView.findViewById(R.id.rightLL);
         }
     }
 
@@ -147,6 +189,8 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         private ImageView threeOneIv;
         private ImageView threeTwoIv;
         private ImageView threeThrIv;
+        private LinearLayout threeLL;
+
         public ThreePicViewHolder(View itemView) {
             super(itemView);
             threeTitleTv = (TextView) itemView.findViewById(R.id.threeTitleTv);
@@ -155,6 +199,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             threeOneIv = (ImageView) itemView.findViewById(R.id.threeOneIv);
             threeTwoIv = (ImageView) itemView.findViewById(R.id.threeTwoIv);
             threeThrIv = (ImageView) itemView.findViewById(R.id.threeThrIv);
+            threeLL = (LinearLayout) itemView.findViewById(R.id.threeLL);
         }
     }
 
@@ -163,6 +208,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         private TextView evaTitleTv;
         private TextView evaTailTv;
         private ImageView evaBgIv;
+        private RelativeLayout evaRL;
 
         public EvaluationViewHolder(View itemView) {
             super(itemView);
@@ -170,6 +216,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             evaSourceTv = (TextView) itemView.findViewById(R.id.evaSourceTv);
             evaTitleTv = (TextView) itemView.findViewById(R.id.evaTitleTv);
             evaTailTv = (TextView) itemView.findViewById(R.id.evaTailTv);
+            evaRL = (RelativeLayout) itemView.findViewById(R.id.evaRL);
         }
     }
 
@@ -180,6 +227,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         private TextView homeNameTv;
         private TextView homeCountTv;
         private TextView homeDesTv;
+        private RelativeLayout firstRL;
         public FirstViewHolder(View itemView) {
             super(itemView);
             homePicIv = (ImageView) itemView.findViewById(R.id.homePicIv);
@@ -188,14 +236,18 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             homeNameTv = (TextView) itemView.findViewById(R.id.homeNameTv);
             homeCountTv = (TextView) itemView.findViewById(R.id.homeCountTv);
             homeDesTv = (TextView) itemView.findViewById(R.id.homeDesTv);
+            firstRL = (RelativeLayout) itemView.findViewById(R.id.firstRL);
         }
     }
 
     private class AddsViewHolder extends RecyclerView.ViewHolder {
         private ImageView firstAddsIv;
+        private LinearLayout addsLL;
+
         public AddsViewHolder(View itemView) {
             super(itemView);
             firstAddsIv = (ImageView) itemView.findViewById(R.id.firstAddIv);
+            addsLL = (LinearLayout) itemView.findViewById(R.id.addsLL);
         }
     }
 }

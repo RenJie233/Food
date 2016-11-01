@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 /**
  * Created by Ren on 16/10/24.
@@ -52,6 +53,12 @@ public abstract class BaseFragment extends Fragment {
                 views) {
             view.setOnClickListener(clickListener);
         }
+    }
+    protected void setItemClickListener(AdapterView.OnItemClickListener itemClickListener, AdapterView... adapterViews){
+        for (AdapterView adapterView : adapterViews) {
+            adapterView.setOnItemClickListener(itemClickListener);
+        }
+
     }
 
 }

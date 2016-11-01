@@ -12,14 +12,16 @@ public abstract class BaseAty extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(getLayout());
         initViews();
+        initData();
     }
 
     protected abstract int getLayout();
 
     protected abstract void initViews();
+
+    protected abstract void initData();
 
     protected <T extends View> T bindView(int id) {
         return (T) findViewById(id);

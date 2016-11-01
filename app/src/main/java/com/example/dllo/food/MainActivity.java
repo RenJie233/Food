@@ -40,6 +40,11 @@ public class MainActivity extends BaseAty implements View.OnClickListener{
 
     }
 
+    @Override
+    protected void initData() {
+
+    }
+
     // 点击事件
     @Override
     public void onClick(View v) {

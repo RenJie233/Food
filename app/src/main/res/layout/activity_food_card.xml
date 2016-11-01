@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".homepage.FoodCardActivity">
+    <include layout="@layout/title_food_card" android:id="@+id/foodCardTitle">50dp</include>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorWhite">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+                <com.example.dllo.food.tools.CircleImageView
+                    android:id="@+id/userAvatarIv"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:isCircle="true"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp">
+                    <TextView
+                        android:id="@+id/userNameTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/postDateTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/foodCardIv"
+                android:layout_width="match_parent"
+                android:layout_height="480dp"/>
+            <TextView
+                android:id="@+id/foodDescTv"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:gravity="center_horizontal"
+                android:layout_margin="20dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorNormal">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorWhite">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="40dp">
+            <Button
+                android:id="@+id/cardAgreeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:drawableLeft="@mipmap/ic_home_agree"
+                android:background="@color/colorTrans"
+                android:gravity="center"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/cardInfoBtn"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="40dp"
+            android:text="食物信息"
+            android:gravity="center"
+            android:background="@color/colorTabSelected"
+            android:textColor="@color/colorWhite"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+
+</LinearLayout>

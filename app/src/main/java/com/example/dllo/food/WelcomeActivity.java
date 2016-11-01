@@ -31,4 +31,9 @@ public class WelcomeActivity extends BaseAty {
         timer.start();
     }
 
+    @Override
+    protected void initData() {
+
+    }
+
 }
