@@ -19,8 +19,8 @@ import java.util.ArrayList;
  */
 public class LibGridAdapter extends BaseAdapter {
     Context context;
-//    LibraryBean bean;
     ArrayList<LibraryBean.GroupBean.CategoriesBean> categoriesBeen;
+
 
     public void setCategoriesBeen(ArrayList<LibraryBean.GroupBean.CategoriesBean> categoriesBeen) {
         this.categoriesBeen = categoriesBeen;

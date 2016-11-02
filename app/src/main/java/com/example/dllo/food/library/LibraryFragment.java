@@ -1,5 +1,8 @@
 package com.example.dllo.food.library;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
@@ -42,19 +45,49 @@ public class LibraryFragment extends BaseFragment {
     protected void initData() {
         GsonRequest<LibraryBean> gsonRequest = new GsonRequest<LibraryBean>(LibraryBean.class, UrlValues.LIBRARY, new Response.Listener<LibraryBean>() {
             @Override
-            public void onResponse(LibraryBean response) {
+            public void onResponse(final LibraryBean response) {
                 // 食物分类
                 LibGridAdapter groupAdapter = new LibGridAdapter(getActivity());
                 groupAdapter.setCategoriesBeen((ArrayList<LibraryBean.GroupBean.CategoriesBean>) response.getGroup().get(0).getCategories());
                 libGroupGv.setAdapter(groupAdapter);
+                libGroupGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(getActivity(), LibDetailActivity.class);
+                        intent.putExtra("kind", response.getGroup().get(0).getKind());
+                        intent.putExtra("id", response.getGroup().get(0).getCategories().get(position).getId());
+                        intent.putExtra("name", response.getGroup().get(0).getCategories().get(position).getName());
+                        startActivity(intent);
+                    }
+                });
                 // 热门品牌
                 LibGridAdapter brandAdapter = new LibGridAdapter(getActivity());
                 brandAdapter.setCategoriesBeen((ArrayList<LibraryBean.GroupBean.CategoriesBean>) response.getGroup().get(1).getCategories());
                 libBrandGv.setAdapter(brandAdapter);
+                libBrandGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(getActivity(), LibDetailActivity.class);
+                        intent.putExtra("kind", response.getGroup().get(1).getKind());
+                        intent.putExtra("id", response.getGroup().get(1).getCategories().get(position).getId());
+                        intent.putExtra("name", response.getGroup().get(1).getCategories().get(position).getName());
+                        startActivity(intent);
+                    }
+                });
                 // 连锁餐饮
                 LibGridAdapter restAdapter = new LibGridAdapter(getActivity());
                 restAdapter.setCategoriesBeen((ArrayList<LibraryBean.GroupBean.CategoriesBean>) response.getGroup().get(2).getCategories());
                 libRestGv.setAdapter(restAdapter);
+                libRestGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(getActivity(), LibDetailActivity.class);
+                        intent.putExtra("kind", response.getGroup().get(2).getKind());
+                        intent.putExtra("id", response.getGroup().get(2).getCategories().get(position).getId());
+                        intent.putExtra("name", response.getGroup().get(2).getCategories().get(position).getName());
+                        startActivity(intent);
+                    }
+                });
             }
         }, new Response.ErrorListener() {
             @Override

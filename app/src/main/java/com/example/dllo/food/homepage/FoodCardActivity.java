@@ -19,6 +19,7 @@ public class FoodCardActivity extends BaseAty {
     private TextView userNameTv, postDateTv, foodDescTv;
     private ImageView userAvatarIv, foodCardIv;
     private Button cardAgreeBtn, cardInfoBtn;
+    private Button cardBackBtn;
 
     @Override
     protected int getLayout() {
@@ -34,6 +35,12 @@ public class FoodCardActivity extends BaseAty {
         foodCardIv = bindView(R.id.foodCardIv);
         cardAgreeBtn = bindView(R.id.cardAgreeBtn);
         cardInfoBtn = bindView(R.id.cardInfoBtn);
+
+        cardBackBtn = bindView(R.id.cardBackBtn);
+
+
+
+
 
     }
 
@@ -74,6 +81,17 @@ public class FoodCardActivity extends BaseAty {
             }
         });
         VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+
+
+        cardBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
 
     }
 

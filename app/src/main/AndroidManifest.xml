@@ -26,6 +26,8 @@
         </activity>
         <activity android:name=".homepage.AddsActivity">
         </activity>
+        <activity android:name=".library.LibDetailActivity">
+        </activity>
     </application>
 
 </manifest>

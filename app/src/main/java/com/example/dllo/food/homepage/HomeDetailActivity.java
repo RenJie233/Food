@@ -1,17 +1,21 @@
 package com.example.dllo.food.homepage;
 
 import android.content.Intent;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 
 import com.example.dllo.food.R;
 import com.example.dllo.food.base.BaseAty;
 
-public class HomeDetailActivity extends BaseAty {
+
+public class HomeDetailActivity extends BaseAty implements View.OnClickListener {
 
     private WebView homeDetailWv;
+    private Button newsBackBtn;
 
     @Override
     protected int getLayout() {
@@ -21,6 +25,8 @@ public class HomeDetailActivity extends BaseAty {
     @Override
     protected void initViews() {
         homeDetailWv = (WebView) findViewById(R.id.homeDetailWv);
+        newsBackBtn = bindView(R.id.newsBackBtn);
+        setClickListener(this, newsBackBtn);
     }
 
     @Override
@@ -38,7 +44,13 @@ public class HomeDetailActivity extends BaseAty {
             settings.setJavaScriptEnabled(true);
             homeDetailWv.loadUrl(getLink);
         }
+
+
     }
 
 
+    @Override
+    public void onClick(View v) {
+        finish();
+    }
 }
