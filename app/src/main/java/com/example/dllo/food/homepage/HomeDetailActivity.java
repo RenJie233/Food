@@ -24,7 +24,8 @@ public class HomeDetailActivity extends BaseAty implements View.OnClickListener 
 
     @Override
     protected void initViews() {
-        homeDetailWv = (WebView) findViewById(R.id.homeDetailWv);
+//        homeDetailWv = (WebView) findViewById(R.id.homeDetailWv);
+        homeDetailWv = bindView(R.id.homeDetailWv);
         newsBackBtn = bindView(R.id.newsBackBtn);
         setClickListener(this, newsBackBtn);
     }

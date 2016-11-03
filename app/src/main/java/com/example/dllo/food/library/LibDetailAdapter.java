@@ -48,15 +48,20 @@ public class LibDetailAdapter extends BaseAdapter {
         }
         VolleySingleTon.getInstance().getImage(bean.getFoods().get(position).getThumb_image_url(), viewHolder.thumbIv);
         viewHolder.libDetailName.setText(bean.getFoods().get(position).getName());
-        viewHolder.count.setText((int) (4.184 * Integer.parseInt(bean.getFoods().get(position).getCalory())) + ".00");
+        viewHolder.count.setText((int) (4.184 * Integer.parseInt(bean.getFoods().get(position).getCalory())) + "");
         if (bean.getFoods().get(position).getHealth_light() == 1) {
-            viewHolder.healthLight.setImageResource(R.mipmap.ic_recommend);
+            viewHolder.healthLight.setImageResource(R.mipmap.point_recommend);
         } else if (bean.getFoods().get(position).getHealth_light() == 2) {
-            viewHolder.healthLight.setImageResource(R.mipmap.ic_suit);
+            viewHolder.healthLight.setImageResource(R.mipmap.point_suit);
         } else {
-            viewHolder.healthLight.setImageResource(R.mipmap.ic_less);
+            viewHolder.healthLight.setImageResource(R.mipmap.point_less);
         }
         return convertView;
+    }
+
+    public void addBean(LibDetailBean response) {
+        this.bean.addData(response.getFoods());
+        notifyDataSetChanged();
     }
 
     private class LibDetailViewHolder {

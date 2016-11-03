@@ -72,6 +72,12 @@ public class LibDetailBean {
         this.foods = foods;
     }
 
+    public void addData(List<FoodsBean> foods) {
+        for (int i = 0; i < foods.size(); i++) {
+            this.foods.add(this.foods.size(), foods.get(i));
+        }
+    }
+
     public static class FoodsBean {
         private int id;
         private String code;

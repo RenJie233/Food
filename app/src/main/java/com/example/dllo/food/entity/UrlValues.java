@@ -18,4 +18,5 @@ public final class UrlValues {
     public static final String LIB_DETAIL_ORDER = "&order_by=";
     public static final String LIB_DETAIL_PAGE = "&page=";
     public static final String LIB_DETAIL_ASC = "&order_asc=";
+    public static final String LIB_DETAIL_SORT = "http://food.boohee.com/fb/v1/foods/sort_types";
 }
