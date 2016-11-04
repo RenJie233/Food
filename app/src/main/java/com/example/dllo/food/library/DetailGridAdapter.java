@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.dllo.food.R;
+import com.example.dllo.food.entity.SortTypesBean;
 
 /**
  * Created by Ren on 16/11/3.
