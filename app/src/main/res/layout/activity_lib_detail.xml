@@ -1,70 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical">
-
-    <include layout="@layout/title_lib_detail"/>
+              >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorNormal">
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/colorWhite">
+        <include layout="@layout/title_lib_detail"/>
 
         <LinearLayout
-            android:id="@+id/sequenceLL"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:background="@color/colorWhite"
-            android:layout_centerVertical="true">
-
-            <TextView
-                android:id="@+id/sequenceTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:text="营养素排序"
-                android:textSize="15sp"/>
-            <ImageView
-                android:id="@+id/sequenceArrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_arrow_down"
-                android:layout_gravity="center"/>
-
-
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorNormal">
         </LinearLayout>
 
-
-
-        <Button
-            android:id="@+id/detailOrderBtn"
-            android:layout_width="75dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="295dp"
-            android:text="由高到低"
-            android:gravity="center_vertical"
-            android:textColor="#ff3939"
-            android:drawableRight="@mipmap/ic_food_ordering_down"
-            android:background="@color/colorWhite"
-            android:visibility="gone"/>
+            android:background="@color/colorWhite">
 
-    </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/sequenceLL"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@color/colorWhite"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/sequenceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:text="营养素排序"
+                    android:textSize="15sp"/>
+                <ImageView
+                    android:id="@+id/sequenceArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_arrow_down"
+                    android:layout_gravity="center"/>
 
 
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/libDetailLv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+            </LinearLayout>
 
 
-</LinearLayout>
+
+            <Button
+                android:id="@+id/detailOrderBtn"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="295dp"
+                android:text="由高到低"
+                android:gravity="center_vertical"
+                android:textColor="#ff3939"
+                android:background="@color/colorWhite"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/detailOrderIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_food_ordering_down"
+                android:layout_marginLeft="355dp"
+                android:layout_centerVertical="true"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/libDetailLv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/detailAnimIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+
+
+</RelativeLayout>

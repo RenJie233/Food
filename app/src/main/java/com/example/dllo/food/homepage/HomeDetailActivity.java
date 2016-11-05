@@ -1,12 +1,14 @@
 package com.example.dllo.food.homepage;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.dllo.food.R;
 import com.example.dllo.food.base.BaseAty;
@@ -16,6 +18,8 @@ public class HomeDetailActivity extends BaseAty implements View.OnClickListener 
 
     private WebView homeDetailWv;
     private Button newsBackBtn;
+    private ImageView homeDetailAnimIv;
+    private AnimationDrawable loadingAnim;
 
     @Override
     protected int getLayout() {
@@ -27,11 +31,15 @@ public class HomeDetailActivity extends BaseAty implements View.OnClickListener 
 //        homeDetailWv = (WebView) findViewById(R.id.homeDetailWv);
         homeDetailWv = bindView(R.id.homeDetailWv);
         newsBackBtn = bindView(R.id.newsBackBtn);
+        homeDetailAnimIv = bindView(R.id.homeDetailAnimIv);
         setClickListener(this, newsBackBtn);
     }
 
     @Override
     protected void initData() {
+        homeDetailAnimIv.setImageResource(R.drawable.anim_loading);
+        loadingAnim = (AnimationDrawable) homeDetailAnimIv.getDrawable();
+        loadingAnim.start();
         Intent intent = getIntent();
         String getLink = intent.getStringExtra("link");
         if (getLink != null) {
@@ -44,9 +52,9 @@ public class HomeDetailActivity extends BaseAty implements View.OnClickListener 
             WebSettings settings = homeDetailWv.getSettings();
             settings.setJavaScriptEnabled(true);
             homeDetailWv.loadUrl(getLink);
+            loadingAnim.stop();
+            homeDetailAnimIv.setVisibility(View.GONE);
         }
-
-
     }
 
 

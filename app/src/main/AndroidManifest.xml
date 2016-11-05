@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".library.LibDetailActivity">
         </activity>
+        <activity android:name=".library.LibSearchActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@ public class EvaluationFragment extends BaseFragment implements HomeClickListene
     private PullLoadMoreRecyclerView homeEvaluationRv;
     private HomePageAdapter adapter;
 
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_evaluation;
@@ -75,6 +76,7 @@ public class EvaluationFragment extends BaseFragment implements HomeClickListene
                 VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
                 homeEvaluationRv.setPullLoadMoreCompleted();
             }
+
             // 上拉加载
             @Override
             public void onLoadMore() {

@@ -1,6 +1,9 @@
 package com.example.dllo.food.homepage;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,6 +23,8 @@ public class FirstPageFragment extends BaseFragment implements HomeClickListener
     private int page;
     private PullLoadMoreRecyclerView homeFirstRv;
     private HomePageAdapter adapter;
+    private ImageView firstAnimIv;
+    private AnimationDrawable loadingAnim;
 
     @Override
     protected int getLayout() {
@@ -29,11 +34,15 @@ public class FirstPageFragment extends BaseFragment implements HomeClickListener
     @Override
     protected void initView() {
         homeFirstRv = bindView(R.id.homeFirstRv);
+        firstAnimIv = bindView(R.id.firstAnimIv);
 
     }
 
     @Override
     protected void initData() {
+        firstAnimIv.setImageResource(R.drawable.anim_loading);
+        loadingAnim = (AnimationDrawable) firstAnimIv.getDrawable();
+        loadingAnim.start();
         adapter = new HomePageAdapter(getActivity());
         adapter.setClickListener(this);
         page = 1;
@@ -43,7 +52,8 @@ public class FirstPageFragment extends BaseFragment implements HomeClickListener
                 adapter.setBean(response);
                 homeFirstRv.setAdapter(adapter);
                 homeFirstRv.setStaggeredGridLayout(2);
-
+                loadingAnim.stop();
+                firstAnimIv.setVisibility(View.GONE);
             }
         }, new Response.ErrorListener() {
             @Override

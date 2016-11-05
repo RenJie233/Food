@@ -3,6 +3,7 @@ package com.example.dllo.food.library;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
@@ -20,9 +21,10 @@ import java.util.ArrayList;
 /**
  * Created by Ren on 16/10/21.
  */
-public class LibraryFragment extends BaseFragment {
+public class LibraryFragment extends BaseFragment implements View.OnClickListener {
     private GridView libGroupGv, libBrandGv, libRestGv;
     private LinearLayout libLL;
+    private Button homeSearch;
 
 
     @Override
@@ -36,6 +38,9 @@ public class LibraryFragment extends BaseFragment {
         libBrandGv = bindView(R.id.libBrandGv);
         libRestGv = bindView(R.id.libRestGv);
         libLL = bindView(R.id.libLL);
+        homeSearch = bindView(R.id.homeSearch);
+        setClickListener(this, homeSearch);
+
         libLL.setFocusable(true);
         libLL.setFocusableInTouchMode(true);
         libLL.requestFocus();
@@ -97,5 +102,15 @@ public class LibraryFragment extends BaseFragment {
         });
 
         VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.homeSearch:
+                Intent intent = new Intent(getActivity(), LibSearchActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

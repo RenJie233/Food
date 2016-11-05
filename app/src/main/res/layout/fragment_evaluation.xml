@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-        <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
-            android:id="@+id/homeEvaluationRv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:divider="@null">
-        </com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+        android:id="@+id/homeEvaluationRv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:scrollbars="none">
+    </com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
 
 
 
-</LinearLayout>
+</RelativeLayout>
