@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class SubTypeAdapter extends BaseAdapter {
 
-    ArrayList<SubTypeBean> been;
+    private ArrayList<SubTypeBean> been;
 
     public void setBeen(ArrayList<SubTypeBean> been) {
         this.been = been;

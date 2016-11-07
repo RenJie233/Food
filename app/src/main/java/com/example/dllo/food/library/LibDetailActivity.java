@@ -58,9 +58,9 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
     private PopupWindow subPopWindow;
     private String name;
     private int asc;
-    private static final String defaultOrder = "1", defaultCode = "none";
+    private static final String DEFAULT_ORDER = "1", DEFAULT_CODE = "none";// 大写
     private String currentOrder, currentCode;
-    private static final int defaultSubId = 0;
+    private static final int DEFAULT_SUB_ID = 0;
     private int currentSubId;
     private AnimationDrawable loadingAnim;
     @Override
@@ -102,9 +102,9 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
         page = 1;
         asc = 0;
         // 拉取初始数据
-        currentOrder = defaultOrder;
-        currentSubId = defaultSubId;
-        currentCode = defaultCode;
+        currentOrder = DEFAULT_ORDER;
+        currentSubId = DEFAULT_SUB_ID;
+        currentCode = DEFAULT_CODE;
         initInternetData(currentOrder, currentSubId, asc, currentCode);
 
 
@@ -113,6 +113,53 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
 
         // 上拉加载
         pullUpToRefresh(currentOrder,currentSubId, asc, currentCode);
+
+        // 营养素排序网络数据
+        detailAdapter = new DetailGridAdapter();
+        GsonRequest<SortTypesBean> gsonRequest = new GsonRequest<SortTypesBean>(SortTypesBean.class, UrlValues.LIB_DETAIL_SORT, new Response.Listener<SortTypesBean>() {
+            @Override
+            public void onResponse(SortTypesBean response) {
+                sortTypesBean = response;
+                detailAdapter.setBean(response);
+//                libDetailGv.setAdapter(detailAdapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+
+        // 子分类网络数据
+        // 拉取subType数据
+        been = new ArrayList<>();
+        bean = new SubTypeBean();
+        // 设置第一项永远是默认
+        bean.setId(0);
+        bean.setName("全部");
+        been.add(bean);
+        subTypeAdapter = new SubTypeAdapter();
+        GsonRequest<LibraryBean> subGsonRequest = new GsonRequest<LibraryBean>(LibraryBean.class, UrlValues.LIBRARY, new Response.Listener<LibraryBean>() {
+            @Override
+            public void onResponse(LibraryBean response) {
+//                bean = new SubTypeBean();
+                for (int i = 0; i < response.getGroup().get(0).getCategories().get(getId - 1).getSub_categories().size(); i++) {
+                    bean = new SubTypeBean();
+                    bean.setId(response.getGroup().get(0).getCategories().get(getId - 1).getSub_categories().get(i).getId());
+                    bean.setName(response.getGroup().get(0).getCategories().get(getId - 1).getSub_categories().get(i).getName());
+                    been.add(bean);
+                }
+                subTypeAdapter.setBeen(been);
+//                subTypeLv.setAdapter(subTypeAdapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        VolleySingleTon.getInstance().getRequestQueue().add(subGsonRequest);
 
     }
 
@@ -124,39 +171,41 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
                 finish();
                 break;
             case R.id.sequenceLL:// 营养素排序
-                initSequencePopUpWindow();
+                initSequencePopUpWindow();//TODO 显示pop 初始化在onCreate
                 break;
             case R.id.subTypeBtn:// 子类型
                 View view = LayoutInflater.from(this).inflate(R.layout.pop_sub_types, null);
                 subTypeLv = (ListView) view.findViewById(R.id.subTypeLv);
-                been = new ArrayList<>();
-                bean = new SubTypeBean();
-                // 设置第一项永远是默认
-                bean.setId(0);
-                bean.setName("全部");
-                been.add(bean);
-                subTypeAdapter = new SubTypeAdapter();
-                // 拉取subType数据
-                GsonRequest<LibraryBean> gsonRequest = new GsonRequest<LibraryBean>(LibraryBean.class, UrlValues.LIBRARY, new Response.Listener<LibraryBean>() {
-                    @Override
-                    public void onResponse(LibraryBean response) {
-                        bean = new SubTypeBean();
-                        for (int i = 0; i < response.getGroup().get(0).getCategories().get(getId - 1).getSub_categories().size(); i++) {
-                            bean = new SubTypeBean();
-                            bean.setId(response.getGroup().get(0).getCategories().get(getId - 1).getSub_categories().get(i).getId());
-                            bean.setName(response.getGroup().get(0).getCategories().get(getId - 1).getSub_categories().get(i).getName());
-                            been.add(bean);
-                        }
-                        subTypeAdapter.setBeen(been);
-                        subTypeLv.setAdapter(subTypeAdapter);
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                subTypeLv.setAdapter(subTypeAdapter);
 
-                    }
-                });
-                VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+//                been = new ArrayList<>();
+//                bean = new SubTypeBean();
+//                // 设置第一项永远是默认
+//                bean.setId(0);
+//                bean.setName("全部");
+//                been.add(bean);
+//                subTypeAdapter = new SubTypeAdapter();
+//                // 拉取subType数据
+//                GsonRequest<LibraryBean> gsonRequest = new GsonRequest<LibraryBean>(LibraryBean.class, UrlValues.LIBRARY, new Response.Listener<LibraryBean>() {
+//                    @Override
+//                    public void onResponse(LibraryBean response) {
+//                        bean = new SubTypeBean();
+//                        for (int i = 0; i < response.getGroup().get(0).getCategories().get(getId - 1).getSub_categories().size(); i++) {
+//                            bean = new SubTypeBean();
+//                            bean.setId(response.getGroup().get(0).getCategories().get(getId - 1).getSub_categories().get(i).getId());
+//                            bean.setName(response.getGroup().get(0).getCategories().get(getId - 1).getSub_categories().get(i).getName());
+//                            been.add(bean);
+//                        }
+//                        subTypeAdapter.setBeen(been);
+//                        subTypeLv.setAdapter(subTypeAdapter);
+//                    }
+//                }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//
+//                    }
+//                });
+//                VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
 
                 // 设置pop大小和位置
                 subPopWindow = new PopupWindow(view, 200, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -196,7 +245,7 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
     }
 
     public void initSequencePopUpWindow() {
-        detailAdapter = new DetailGridAdapter();
+//        detailAdapter = new DetailGridAdapter();
         if (popupWindow.isShowing()) {
             // 箭头旋转动画
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.arrow_rotate_back);
@@ -212,22 +261,23 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
             popupWindow.showAsDropDown(sequenceLL);
 
             libDetailGv = (GridView) view.findViewById(R.id.libDetailGv);
+            libDetailGv.setAdapter(detailAdapter);
 
             // 拉取根据营养素排序网络数据
-            GsonRequest<SortTypesBean> gsonRequest = new GsonRequest<SortTypesBean>(SortTypesBean.class, UrlValues.LIB_DETAIL_SORT, new Response.Listener<SortTypesBean>() {
-                @Override
-                public void onResponse(SortTypesBean response) {
-                    sortTypesBean = response;
-                    detailAdapter.setBean(response);
-                    libDetailGv.setAdapter(detailAdapter);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                }
-            });
-            VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+//            GsonRequest<SortTypesBean> gsonRequest = new GsonRequest<SortTypesBean>(SortTypesBean.class, UrlValues.LIB_DETAIL_SORT, new Response.Listener<SortTypesBean>() {
+//                @Override
+//                public void onResponse(SortTypesBean response) {
+//                    sortTypesBean = response;
+//                    detailAdapter.setBean(response);
+//                    libDetailGv.setAdapter(detailAdapter);
+//                }
+//            }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//
+//                }
+//            });
+//            VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
 
             // 设置营养素里item的点击事件
             libDetailGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

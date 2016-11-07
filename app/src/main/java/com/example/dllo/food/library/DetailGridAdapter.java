@@ -14,7 +14,7 @@ import com.example.dllo.food.entity.SortTypesBean;
  */
 public class DetailGridAdapter extends BaseAdapter {
 
-    SortTypesBean bean;
+    private SortTypesBean bean;
 
     public void setBean(SortTypesBean bean) {
         this.bean = bean;

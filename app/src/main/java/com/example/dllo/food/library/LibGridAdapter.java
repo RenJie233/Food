@@ -18,8 +18,8 @@ import java.util.ArrayList;
  * Created by Ren on 16/10/27.
  */
 public class LibGridAdapter extends BaseAdapter {
-    Context context;
-    ArrayList<LibraryBean.GroupBean.CategoriesBean> categoriesBeen;
+    private Context context;
+    private ArrayList<LibraryBean.GroupBean.CategoriesBean> categoriesBeen;
 
 
     public void setCategoriesBeen(ArrayList<LibraryBean.GroupBean.CategoriesBean> categoriesBeen) {

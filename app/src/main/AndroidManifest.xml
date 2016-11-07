@@ -28,7 +28,7 @@
         </activity>
         <activity android:name=".library.LibDetailActivity">
         </activity>
-        <activity android:name=".library.LibSearchActivity">
+        <activity android:name=".library.search.LibSearchActivity">
         </activity>
     </application>
 

@@ -10,8 +10,8 @@ import java.util.ArrayList;
  * Created by Ren on 16/10/24.
  */
 public class HomeFragmentAdapter extends FragmentPagerAdapter {
-    ArrayList<Fragment> fragments;
-    String[] titles = {"首页", "评测", "知识", "美食"};
+    private ArrayList<Fragment> fragments;
+    private String[] titles = {"首页", "评测", "知识", "美食"};
 
     public void setFragments(ArrayList<Fragment> fragments) {
         this.fragments = fragments;

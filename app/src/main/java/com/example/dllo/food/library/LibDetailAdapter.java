@@ -16,8 +16,8 @@ import com.example.dllo.food.volleyandgson.VolleySingleTon;
  */
 public class LibDetailAdapter extends BaseAdapter {
 
-    LibDetailBean bean;
-    String code;
+    private LibDetailBean bean;
+    private String code;
 
 
     public void setBean(LibDetailBean bean) {
@@ -55,13 +55,6 @@ public class LibDetailAdapter extends BaseAdapter {
         }
         VolleySingleTon.getInstance().getImage(bean.getFoods().get(position).getThumb_image_url(), viewHolder.thumbIv);
         viewHolder.libDetailName.setText(bean.getFoods().get(position).getName());
-//        if (Integer.parseInt(order) == 2) {
-//            viewHolder.count.setText((int) (4.184 * Integer.parseInt(bean.getFoods().get(position).getCalory())) + "");
-//
-//        } else if (Integer.parseInt(order) >= 3 && Integer.parseInt(order) <= 6) {
-//            viewHolder.count.setText();
-//            viewHolder.unit.setText("克/100克");
-//        }
         switch (code) {
             case "calory":
                 viewHolder.count.setText((int) (4.184 * Integer.parseInt(bean.getFoods().get(position).getCalory())) + "");

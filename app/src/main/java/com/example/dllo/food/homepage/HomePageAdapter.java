@@ -25,9 +25,9 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int TYPE_FIRST_NORMAL = 5;
     private static final int TYPE_FIRST_ADDS = 6;
 
-    HomeClickListener clickListener;
-    Context context;
-    HomeBean bean;
+    private HomeClickListener clickListener;
+    private Context context;
+    private HomeBean bean;
 
 
     public void setClickListener(HomeClickListener clickListener) {

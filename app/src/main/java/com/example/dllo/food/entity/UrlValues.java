@@ -20,4 +20,8 @@ public final class UrlValues {
     public static final String LIB_DETAIL_ASC = "&order_asc=";
     public static final String LIB_DETAIL_SORT = "http://food.boohee.com/fb/v1/foods/sort_types";
     public static final String LIB_SEARCH_KEYWORDS = "http://food.boohee.com/fb/v1/keywords";
+    public static final String LIB_SEARCH = "http://food.boohee.com/fb/v1/search?page=";
+    public static final String LIB_SEARCH_FOOT = "&order_asc=desc&q=";
+    public static final String LIB_SEARCH_Q = "&q=";
+    public static final String LIB_SEARCH_RECOMMEND = "&health_light=1";
 }
