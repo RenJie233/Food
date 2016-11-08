@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.dllo.food.R;
@@ -15,6 +16,11 @@ import com.example.dllo.food.entity.KeyWordsBean;
 public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAdapter.MyViewHolder> {
 
     private KeyWordsBean bean;
+    private SearchItemClickListener searchItemClickListener;
+
+    public void setSearchItemClickListener(SearchItemClickListener searchItemClickListener) {
+        this.searchItemClickListener = searchItemClickListener;
+    }
 
     public void setBean(KeyWordsBean bean) {
         this.bean = bean;
@@ -29,8 +35,14 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
     }
 
     @Override
-    public void onBindViewHolder(SearchRecyclerAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(SearchRecyclerAdapter.MyViewHolder holder, final int position) {
         holder.itemKeyWordsTv.setText(bean.getKeywords().get(position));
+        holder.keyWordsLv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchItemClickListener.onItemClick(bean.getKeywords().get(position));
+            }
+        });
     }
 
     @Override
@@ -41,10 +53,12 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView itemKeyWordsTv;
+        private LinearLayout keyWordsLv;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             itemKeyWordsTv = (TextView) itemView.findViewById(R.id.itemKeyWordsTv);
+            keyWordsLv = (LinearLayout) itemView.findViewById(R.id.keyWordsLv);
         }
     }
 }

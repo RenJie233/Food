@@ -12,6 +12,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最近搜过"/>
+            <ListView
+                android:id="@+id/historyLv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite">
+            </ListView>
 
             <TextView
                 android:layout_width="match_parent"
@@ -20,7 +30,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/keyWordsRv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite">
 
             </android.support.v7.widget.RecyclerView>
 

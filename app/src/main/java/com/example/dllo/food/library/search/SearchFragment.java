@@ -12,12 +12,15 @@ import com.example.dllo.food.entity.UrlValues;
 import com.example.dllo.food.volleyandgson.GsonRequest;
 import com.example.dllo.food.volleyandgson.VolleySingleTon;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * Created by Ren on 16/11/7.
  */
-public class SearchFragment extends BaseFragment {
+public class SearchFragment extends BaseFragment implements SearchItemClickListener{
 
     private RecyclerView keyWordsRv;
+    private SearchRecyclerAdapter adapter;
 
     @Override
     protected int getLayout() {
@@ -31,15 +34,17 @@ public class SearchFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+//        SharedPreferences preferences = getActivity().getSharedPreferences("history", Context.MODE_PRIVATE);
+
+        adapter = new SearchRecyclerAdapter();
+        adapter.setSearchItemClickListener(this);
         GsonRequest<KeyWordsBean> gsonRequest = new GsonRequest<KeyWordsBean>(KeyWordsBean.class, UrlValues.LIB_SEARCH_KEYWORDS, new Response.Listener<KeyWordsBean>() {
+
             @Override
             public void onResponse(KeyWordsBean response) {
-                SearchRecyclerAdapter adapter = new SearchRecyclerAdapter();
                 adapter.setBean(response);
                 GridLayoutManager manager = new GridLayoutManager(getActivity(), 2);
                 keyWordsRv.setLayoutManager(manager);
-//                LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-//                keyWordsRv.setLayoutManager(manager);
                 keyWordsRv.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
@@ -49,6 +54,12 @@ public class SearchFragment extends BaseFragment {
             }
         });
 
+
         VolleySingleTon.getInstance().getRequestQueue().add(gsonRequest);
+    }
+
+    @Override
+    public void onItemClick(String words) {
+        EventBus.getDefault().post(new SearchEvent(words));
     }
 }

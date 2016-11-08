@@ -12,8 +12,12 @@ import android.widget.ImageView;
 import com.example.dllo.food.R;
 import com.example.dllo.food.base.BaseAty;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 public class LibSearchActivity extends BaseAty implements View.OnClickListener{
 
@@ -23,6 +27,8 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
     private Button searchDelete;
     private FragmentManager manager;
     private String result;
+//    private SharedPreferences.Editor editor;
+//    private SharedPreferences sharedPreferences;
 
     @Override
     protected int getLayout() {
@@ -43,10 +49,14 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
 
     @Override
     protected void initData() {
+//        sharedPreferences = getSharedPreferences("history", MODE_PRIVATE);
+//        editor = sharedPreferences.edit();
         manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.searchFl, new SearchFragment());
         transaction.commit();
+
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -58,13 +68,11 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
                 break;
             case R.id.searchSearch:
                 String str = searchEt.getText().toString();
+//                editor.putString("str", str);
+//                editor.commit();
                 try {
-                    result = URLDecoder.decode(str, "UTF-8");
-//                    Log.d("LibSearchActivity", result);
-
-//                    Intent intent = new Intent();
-//                    intent.putExtra("result", result);
-//                    startActivity(intent);
+                    result = URLEncoder.encode(str, "UTF-8");
+//                    result = URLDecoder.decode(str, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -81,5 +89,31 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
                 break;
         }
         transaction.commit();
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSearchEvent(SearchEvent event) {
+        String query = event.getText();
+        searchEt.setText(query);
+        try {
+            result = URLEncoder.encode(query, "UTF-8");
+//            result = URLDecoder.decode(query, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+//        Log.d("LibSearchActivity", result);
+        Bundle bundle = new Bundle();
+        bundle.putString("result", result);
+        SearchResultFragment fragment = new SearchResultFragment();
+        fragment.setArguments(bundle);
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.searchFl, fragment);
+        transaction.commit();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

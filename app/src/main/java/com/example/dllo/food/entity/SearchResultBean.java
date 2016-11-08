@@ -68,6 +68,12 @@ public class SearchResultBean {
         this.items = items;
     }
 
+    public void addData(List<ItemsBean> items) {
+        for (int i = 0; i < items.size(); i++) {
+            this.items.add(this.items.size(), items.get(i));
+        }
+    }
+
     public static class TagsBean {
         private String type;
         private String name;
