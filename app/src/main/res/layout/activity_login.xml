@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dllo.food.my.LoginActivity"
+    android:background="@color/colorWhite">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="不用注册, 用以下账号直接登录"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/loginQQ"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:drawableTop="@mipmap/ic_login_qq"
+                android:text="QQ"
+                android:background="@color/colorTrans"/>
+            <Button
+                android:id="@+id/loginWechat"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:drawableTop="@mipmap/ic_login_wechat"
+                android:text="微信"
+                android:background="@color/colorTrans"/>
+            <Button
+                android:id="@+id/loginWeibo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:drawableTop="@mipmap/ic_login_weibo"
+                android:text="微博"
+                android:background="@color/colorTrans"/>
+            <Button
+                android:id="@+id/loginBoohee"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:drawableTop="@mipmap/ic_login_boohee"
+                android:text="薄荷"
+                android:background="@color/colorTrans"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/img_tomato_bread"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

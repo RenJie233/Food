@@ -1,12 +1,16 @@
 package com.example.dllo.food.library.search;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 
 import com.example.dllo.food.R;
 import com.example.dllo.food.base.BaseViewHolder;
 import com.example.dllo.food.entity.SearchResultBean;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by Ren on 16/11/7.
@@ -40,21 +44,30 @@ public class SearchResultAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         BaseViewHolder viewHolder = BaseViewHolder.getViewHolder(convertView, parent, R.layout.item_lib_detail);
 
         viewHolder.setImage(R.id.thumbIv, bean.getItems().get(position).getThumb_image_url());
         viewHolder.setText(R.id.libDetailName, bean.getItems().get(position).getName());
+        if (bean.getCompare() == 10010) {
+            Button addCompareBtn = viewHolder.getView(R.id.addCompareBtn);
+            addCompareBtn.setVisibility(View.VISIBLE);
+        }
+
+        viewHolder.setViewClick(R.id.addCompareBtn, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("SearchResultAdapter", "点击了");
+                EventBus.getDefault().post(new CompareEvent(bean.getItems().get(position).getCode()));
+            }
+        });
 
         switch (code) {
             case "normal":
-                viewHolder.setText(R.id.count, bean.getItems().get(position).getCalory());// TODO: 16/11/8  转化单位
-
+                viewHolder.setText(R.id.count, bean.getItems().get(position).getCalory());
                 break;
             case "calory":
-//                double count = 4.184 * Integer.parseInt(bean.getItems().get(position).getCalory());
-//                int count = Integer.parseInt(bean.getItems().get(position).getCalory().toString());
-                viewHolder.setText(R.id.count, bean.getItems().get(position).getCalory());// TODO: 16/11/8  转化单位
+                viewHolder.setText(R.id.count, bean.getItems().get(position).getCalory());
                 break;
             case "protein":
                 viewHolder.setText(R.id.count, bean.getItems().get(position).getProtein());
@@ -141,7 +154,7 @@ public class SearchResultAdapter extends BaseAdapter {
                 viewHolder.setText(R.id.unit, "豪克/100克");
                 break;
             default:
-                viewHolder.setText(R.id.count, String.valueOf(4.184 * Integer.parseInt(bean.getItems().get(position).getCalory())));
+                viewHolder.setText(R.id.count, bean.getItems().get(position).getCalory());
                 break;
         }
 

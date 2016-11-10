@@ -1,5 +1,7 @@
 package com.example.dllo.food.library.search;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +13,8 @@ import android.widget.ImageView;
 
 import com.example.dllo.food.R;
 import com.example.dllo.food.base.BaseAty;
+import com.example.dllo.food.liteorm.DBTool;
+import com.example.dllo.food.liteorm.SearchHistory;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -18,6 +22,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class LibSearchActivity extends BaseAty implements View.OnClickListener{
 
@@ -27,8 +32,8 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
     private Button searchDelete;
     private FragmentManager manager;
     private String result;
-//    private SharedPreferences.Editor editor;
-//    private SharedPreferences sharedPreferences;
+    private int compare;
+    //    private ArrayList<String> arrayList;
 
     @Override
     protected int getLayout() {
@@ -49,12 +54,15 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
 
     @Override
     protected void initData() {
-//        sharedPreferences = getSharedPreferences("history", MODE_PRIVATE);
-//        editor = sharedPreferences.edit();
+
+        Intent intent = getIntent();
+        compare = intent.getIntExtra("compare", 15585);
+
         manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.searchFl, new SearchFragment());
         transaction.commit();
+//        arrayList = new ArrayList<>();
 
         EventBus.getDefault().register(this);
     }
@@ -68,20 +76,19 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
                 break;
             case R.id.searchSearch:
                 String str = searchEt.getText().toString();
-//                editor.putString("str", str);
-//                editor.commit();
                 try {
                     result = URLEncoder.encode(str, "UTF-8");
-//                    result = URLDecoder.decode(str, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
+//                insertHistoryShared(arrayList);
                 Bundle bundle = new Bundle();
                 bundle.putString("result", result);
+                bundle.putInt("compare", compare);
                 SearchResultFragment fragment = new SearchResultFragment();
                 fragment.setArguments(bundle);
-
                 transaction.replace(R.id.searchFl, fragment);
+                insertHistory(str);
                 break;
             case R.id.searchDelete:
                 searchEt.setText("");
@@ -92,22 +99,22 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSearchEvent(SearchEvent event) {
-        String query = event.getText();
-        searchEt.setText(query);
+        String str = event.getText();
+        searchEt.setText(str);
         try {
-            result = URLEncoder.encode(query, "UTF-8");
-//            result = URLDecoder.decode(query, "UTF-8");
+            result = URLEncoder.encode(str, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-//        Log.d("LibSearchActivity", result);
         Bundle bundle = new Bundle();
         bundle.putString("result", result);
+        bundle.putInt("compare", compare);
         SearchResultFragment fragment = new SearchResultFragment();
         fragment.setArguments(bundle);
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.searchFl, fragment);
         transaction.commit();
+        insertHistory(str);
     }
 
 
@@ -115,5 +122,27 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    public void insertHistory(String str) {
+        SearchHistory history = new SearchHistory();
+        history.setHistory(str);
+        DBTool.getInstance().insertSearchHistory(history);
+    }
+
+    public void insertHistoryShared(ArrayList<String> arrayList) {
+        SharedPreferences preferences = getSharedPreferences("history", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        for (int i = 0; i < arrayList.size(); i++) {
+            editor.putString(i + "", arrayList.get(i));
+
+        }
+        editor.commit();
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCompareEvent(CompareEvent event) {
+        if (event != null) {
+            finish();
+        }
     }
 }

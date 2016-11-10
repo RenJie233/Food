@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class LibraryFragment extends BaseFragment implements View.OnClickListener {
     private GridView libGroupGv, libBrandGv, libRestGv;
     private LinearLayout libLL;
-    private Button homeSearch;
+    private Button homeSearch, homeCompare;
 
 
     @Override
@@ -40,7 +40,9 @@ public class LibraryFragment extends BaseFragment implements View.OnClickListene
         libRestGv = bindView(R.id.libRestGv);
         libLL = bindView(R.id.libLL);
         homeSearch = bindView(R.id.homeSearch);
-        setClickListener(this, homeSearch);
+        homeCompare = bindView(R.id.homeCompare);
+
+        setClickListener(this, homeSearch, homeCompare);
 
         libLL.setFocusable(true);
         libLL.setFocusableInTouchMode(true);
@@ -111,6 +113,10 @@ public class LibraryFragment extends BaseFragment implements View.OnClickListene
             case R.id.homeSearch:
                 Intent intent = new Intent(getActivity(), LibSearchActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.homeCompare:
+                Intent compareIntent = new Intent(getActivity(), LibCompareActivity.class);
+                startActivity(compareIntent);
                 break;
         }
     }

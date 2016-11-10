@@ -15,6 +15,7 @@ public class SearchResultBean {
 
     private int page;
     private int total_pages;
+    private int compare;
     /**
      * type : tags
      * name : 水果
@@ -66,6 +67,14 @@ public class SearchResultBean {
 
     public void setItems(List<ItemsBean> items) {
         this.items = items;
+    }
+
+    public int getCompare() {
+        return compare;
+    }
+
+    public void setCompare(int compare) {
+        this.compare = compare;
     }
 
     public void addData(List<ItemsBean> items) {

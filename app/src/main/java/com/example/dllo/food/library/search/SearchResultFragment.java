@@ -1,5 +1,6 @@
 package com.example.dllo.food.library.search;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import com.example.dllo.food.entity.SearchResultBean;
 import com.example.dllo.food.entity.SortTypesBean;
 import com.example.dllo.food.entity.UrlValues;
 import com.example.dllo.food.library.DetailGridAdapter;
+import com.example.dllo.food.library.FoodDetailActivity;
 import com.example.dllo.food.volleyandgson.GsonRequest;
 import com.example.dllo.food.volleyandgson.VolleySingleTon;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -57,6 +59,7 @@ public class SearchResultFragment extends BaseFragment implements View.OnClickLi
     private String urlFoot;
     private static final String DEFAULT_CODE = "none";
     private AnimationDrawable loadingAnim;
+    private int compare;
 
     @Override
     protected int getLayout() {
@@ -75,7 +78,7 @@ public class SearchResultFragment extends BaseFragment implements View.OnClickLi
         searchOrderIv = bindView(R.id.searchOrderIv);
         resultAnimIv = bindView(R.id.resultAnimIv);
 
-        setClickListener(this, searchSequenceLL, searchOrderBtn, recommendCb);
+        setClickListener(this, searchSequenceLL, searchOrderBtn, recommendCb, searchResultLv);
     }
 
     @Override
@@ -122,7 +125,9 @@ public class SearchResultFragment extends BaseFragment implements View.OnClickLi
 
         page = 1;
         result = getArguments().getString("result");
-//        try {
+        compare = getArguments().getInt("compare");
+
+        //        try {
 //            result = URLDecoder.decode(result, "UTF-8");
 //        } catch (UnsupportedEncodingException e) {
 //            e.printStackTrace();
@@ -135,6 +140,15 @@ public class SearchResultFragment extends BaseFragment implements View.OnClickLi
         pullUpToRefresh(urlFoot);
 
         popupWindow = new PopupWindow(GridLayout.LayoutParams.MATCH_PARENT, GridLayout.LayoutParams.WRAP_CONTENT);
+
+
+        searchResultLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent itemIntent = new Intent(getActivity(), FoodDetailActivity.class);
+                startActivity(itemIntent);
+            }
+        });
     }
 
     @Override
@@ -180,6 +194,7 @@ public class SearchResultFragment extends BaseFragment implements View.OnClickLi
                 initInternetData(url, currentCode);
                 pullUpToRefresh(urlFoot);
                 break;
+
         }
     }
 
@@ -258,12 +273,17 @@ public class SearchResultFragment extends BaseFragment implements View.OnClickLi
         GsonRequest<SearchResultBean> resultGonRequest = new GsonRequest<SearchResultBean>(SearchResultBean.class, url, new Response.Listener<SearchResultBean>() {
             @Override
             public void onResponse(SearchResultBean response) {
+                resultAdapter = new SearchResultAdapter();
+                if (compare == 10010 || compare == 10086) {
+                    response.setCompare(10010);
+                } else {
+                    response.setCompare(110);
+                }
                 if (response.getTotal_pages() == 0) {
                     noResultTv.setVisibility(View.VISIBLE);
                     loadingAnim.stop();
                     resultAnimIv.setVisibility(View.GONE);
                 } else {
-                    resultAdapter = new SearchResultAdapter();
                     resultAdapter.setBean(response);
                     resultAdapter.setCode(code);
                     searchResultLv.setAdapter(resultAdapter);

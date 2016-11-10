@@ -39,7 +39,7 @@
                     android:id="@+id/unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="千焦/100克"
+                    android:text="千卡/100克"
                     android:layout_marginLeft="3dp"/>
             </LinearLayout>
 
@@ -53,4 +53,15 @@
         android:layout_height="20dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="350dp"/>
+
+    <Button
+        android:id="@+id/addCompareBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:text="加入对比"
+        android:textColor="@color/colorTabSelected"
+        android:background="@color/colorWhite"
+        android:visibility="gone"/>
 </RelativeLayout>

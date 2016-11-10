@@ -1,6 +1,8 @@
 package com.example.dllo.food.my;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.example.dllo.food.R;
@@ -11,6 +13,7 @@ import com.example.dllo.food.base.BaseFragment;
  */
 public class MyFragment extends BaseFragment implements View.OnClickListener{
     private RelativeLayout myPhotoRl, myCollectRl, myUploadRl, myOrderRl;
+    private Button loginBtn;
     @Override
     protected int getLayout() {
         return R.layout.fragment_my;
@@ -22,8 +25,9 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
         myCollectRl = bindView(R.id.myCollectRl);
         myUploadRl = bindView(R.id.myUploadRl);
         myOrderRl = bindView(R.id.myOrderRl);
+        loginBtn = bindView(R.id.loginBtn);
 
-        setClickListener(this, myPhotoRl, myCollectRl, myUploadRl, myOrderRl);
+        setClickListener(this, myPhotoRl, myCollectRl, myUploadRl, myOrderRl, loginBtn);
     }
 
     @Override
@@ -42,6 +46,10 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
             case R.id.myUploadRl:
                 break;
             case R.id.myOrderRl:
+                break;
+            case R.id.loginBtn:
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
                 break;
         }
     }

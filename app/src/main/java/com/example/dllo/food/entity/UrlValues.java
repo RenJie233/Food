@@ -24,4 +24,6 @@ public final class UrlValues {
     public static final String LIB_SEARCH_FOOT = "&order_asc=desc&q=";
     public static final String LIB_SEARCH_Q = "&q=";
     public static final String LIB_SEARCH_RECOMMEND = "&health_light=1";
+    public static final String LIB_COMPARE = "http://food.boohee.com/fb/v1/foods/";
+    public static final String LIB_COMPARE_FOOT = "/brief";
 }

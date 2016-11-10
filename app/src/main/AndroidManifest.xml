@@ -30,6 +30,12 @@
         </activity>
         <activity android:name=".library.search.LibSearchActivity">
         </activity>
+        <activity android:name=".my.LoginActivity">
+        </activity>
+        <activity android:name=".library.LibCompareActivity">
+        </activity>
+        <activity android:name=".library.FoodDetailActivity">
+        </activity>
     </application>
 
 </manifest>

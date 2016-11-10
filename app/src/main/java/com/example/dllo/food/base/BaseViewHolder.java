@@ -53,6 +53,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         return itemView;
     }
 
+//    public String findButtonId(int id, String string) {
+//        string = getView(id);
+//    }
+
 
     // 设置数据
     // 设置文字
