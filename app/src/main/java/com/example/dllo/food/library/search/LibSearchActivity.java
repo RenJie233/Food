@@ -33,6 +33,7 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
     private FragmentManager manager;
     private String result;
     private int compare;
+    private Intent intent;
     //    private ArrayList<String> arrayList;
 
     @Override
@@ -55,7 +56,7 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
     @Override
     protected void initData() {
 
-        Intent intent = getIntent();
+        intent = getIntent();
         compare = intent.getIntExtra("compare", 15585);
 
         manager = getSupportFragmentManager();
@@ -142,6 +143,9 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onCompareEvent(CompareEvent event) {
         if (event != null) {
+//            EventBus.getDefault().post(new CompareEvent(event.getCode()));
+            intent.putExtra("compare", event.getCode());
+            setResult(compare, intent);
             finish();
         }
     }
