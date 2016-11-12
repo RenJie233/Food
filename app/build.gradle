@@ -30,4 +30,8 @@ dependencies {
     compile 'com.github.userswlwork:pull-to-refresh:1.0.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile files('libs/lite-orm-1.9.2.jar')
+    compile files('libs/MobCommons-2016.1107.1809.jar')
+    compile files('libs/MobTools-2016.1107.1809.jar')
+    compile files('libs/ShareSDK-Core-2.7.10.jar')
+    compile files('libs/ShareSDK-QQ-2.7.10.jar')
 }

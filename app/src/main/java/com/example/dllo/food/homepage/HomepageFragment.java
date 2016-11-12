@@ -33,6 +33,7 @@ public class HomepageFragment extends BaseFragment{
         fragments.add(new EvaluationFragment());
         fragments.add(new KnowledgeFragment());
         fragments.add(new FoodFragment());
+
         HomeFragmentAdapter adapter = new HomeFragmentAdapter(getFragmentManager());
         adapter.setFragments(fragments);
         homeVp.setAdapter(adapter);

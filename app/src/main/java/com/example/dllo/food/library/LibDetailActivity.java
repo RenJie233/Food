@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Response;
@@ -40,7 +41,7 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
 
     private PullToRefreshListView libDetailLv;
     private TextView libTitleTv, sequenceTitle;
-    private LinearLayout libDetailLL, sequenceLL;
+    private LinearLayout libDetailLL, sequenceLL, popUpLL;
     private GridView libDetailGv;
     private DetailGridAdapter detailAdapter;
     private PopupWindow popupWindow;
@@ -63,6 +64,8 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
     private static final int DEFAULT_SUB_ID = 0;
     private int currentSubId;
     private AnimationDrawable loadingAnim;
+    private RelativeLayout subPopLL;
+
     @Override
     protected int getLayout() {
         return R.layout.activity_lib_detail;
@@ -109,7 +112,7 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
 
 
         // 左popwindow
-        popupWindow = new PopupWindow(GridLayout.LayoutParams.MATCH_PARENT, GridLayout.LayoutParams.WRAP_CONTENT);
+        popupWindow = new PopupWindow(GridLayout.LayoutParams.MATCH_PARENT, GridLayout.LayoutParams.MATCH_PARENT);
 
         // 上拉加载
         pullUpToRefresh(currentOrder,currentSubId, asc, currentCode);
@@ -186,8 +189,11 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
 
 
                 // 设置pop大小和位置
-                subPopWindow = new PopupWindow(view, 200, LinearLayout.LayoutParams.WRAP_CONTENT);
-                subPopWindow.showAsDropDown(subTypeBtn, 300, -70);
+                subPopWindow = new PopupWindow(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                subPopWindow.showAsDropDown(subTypeBtn, 0, -110);
+                subPopLL = (RelativeLayout) view.findViewById(R.id.subPopLL);
+                subPopLL.setOnClickListener(this);
+
                 // 设置pop里的点击事件
                 subTypeLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -219,6 +225,18 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
                     pullUpToRefresh(currentOrder,currentSubId, asc, currentCode);
                 }
                 break;
+            case R.id.popUpLL:
+                if (popupWindow.isShowing()) {
+                    Animation animation = AnimationUtils.loadAnimation(this, R.anim.arrow_rotate_back);
+                    sequenceArrow.startAnimation(animation);
+                    popupWindow.dismiss();
+                }
+                break;
+            case R.id.subPopLL:
+                if (subPopWindow.isShowing()) {
+                    subPopWindow.dismiss();
+                }
+                break;
         }
     }
 
@@ -236,7 +254,12 @@ public class LibDetailActivity extends BaseAty implements View.OnClickListener {
             // 加载popWindow 的view
             View view = LayoutInflater.from(this).inflate(R.layout.pop_sequence, null);
             popupWindow.setContentView(view);
+
             popupWindow.showAsDropDown(sequenceLL);
+
+            popUpLL = (LinearLayout) view.findViewById(R.id.popUpLL);
+            popUpLL.setOnClickListener(this);
+
 
             libDetailGv = (GridView) view.findViewById(R.id.libDetailGv);
             libDetailGv.setAdapter(detailAdapter);

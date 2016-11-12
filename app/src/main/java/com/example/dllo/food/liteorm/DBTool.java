@@ -97,4 +97,33 @@ public class DBTool {
     public interface OnQueryListener {
         void onQuery(ArrayList<SearchHistory> histories);
     }
+
+
+
+    public void insertCollection(final Collection collection) {
+        threadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                liteOrm.insert(collection);
+            }
+        });
+    }
+
+    public void insertCollection(final ArrayList<Collection> collections) {
+        threadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                liteOrm.insert(collections);
+            }
+        });
+    }
+
+    public void queryAllCollection() {
+        threadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                liteOrm.query(Collection.class);
+            }
+        });
+    }
 }

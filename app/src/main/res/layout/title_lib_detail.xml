@@ -38,7 +38,8 @@
             android:gravity="center"
             android:background="@color/colorWhite"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="280dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
             android:drawableRight="@mipmap/ic_arrow_down"
             android:visibility="gone"/>
 
