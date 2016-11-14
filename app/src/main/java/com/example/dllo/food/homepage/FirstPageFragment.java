@@ -116,7 +116,7 @@ public class FirstPageFragment extends BaseFragment implements HomeClickListener
 
 
     @Override
-    public void onClick(String link, int id) {
+    public void onClick(String link, int id, String title) {
         if (link != null) {
             Intent intent = new Intent(getActivity(), AddsActivity.class);
             intent.putExtra("link", link);

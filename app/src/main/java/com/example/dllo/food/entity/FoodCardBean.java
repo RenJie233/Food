@@ -1,4 +1,4 @@
-package com.example.dllo.food.homepage;
+package com.example.dllo.food.entity;
 
 /**
  * Created by Ren on 16/11/1.

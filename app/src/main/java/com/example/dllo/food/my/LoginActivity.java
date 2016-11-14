@@ -53,8 +53,6 @@ public class LoginActivity extends BaseAty implements View.OnClickListener {
                         PlatformDb db = platform.getDb();
                         String name = db.getUserName();
                         String icon = db.getUserIcon();
-                        
-                        Log.d("MainActivity", name + icon);
                         Intent intent = new Intent();
                         intent.putExtra("name", name);
                         intent.putExtra("icon", icon);

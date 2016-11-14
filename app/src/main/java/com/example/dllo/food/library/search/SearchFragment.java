@@ -62,17 +62,17 @@ public class SearchFragment extends BaseFragment implements SearchItemClickListe
             @Override
             public void onQuery(ArrayList<SearchHistory> histories) {
                 arrayList = new ArrayList<>();
-                for (int i = 0; i < histories.size(); i++) {
+                for (int i = histories.size() - 1; i >= 0; i--) {
                     arrayList.add(histories.get(i).getHistory());
                 }
-                for (int i = 0; i < arrayList.size(); i++) {
-                    for (int j = i + 1; j < arrayList.size(); j++) {
-                        if(arrayList.get(i).equals(arrayList.get(j))){
-                            arrayList.remove(j);
-                            j--;
-                        }
-                    }
-                }
+//                for (int i = 0; i < arrayList.size(); i++) {
+//                    for (int j = i + 1; j < arrayList.size(); j++) {
+//                        if(arrayList.get(i).equals(arrayList.get(j))){
+//                            arrayList.remove(j);
+//                            j--;
+//                        }
+//                    }
+//                }
                 if (arrayList.size() > 0) {
                     searchLL.setVisibility(View.VISIBLE);
                 }

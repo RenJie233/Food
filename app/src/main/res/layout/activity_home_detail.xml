@@ -17,41 +17,55 @@
             android:id="@+id/homeDetailWv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/colorAccent">
+            android:layout_weight="1">
         </WebView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/colorWhite">
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content">
-                <Button
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/shareIv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/ic_photo_share"
+                    android:src="@mipmap/ic_photo_share"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="分享"
-                    android:layout_centerInParent="true"
-                    android:background="@color/colorWhite"/>
-            </RelativeLayout>
+                    android:background="@color/colorWhite"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:id="@+id/collectLL">
 
-                <Button
-
+                <ImageView
+                    android:id="@+id/collectIv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/ic_news_keep_default"
-                    android:text="收藏"
-                    android:layout_centerInParent="true"
-                    android:background="@color/colorWhite"/>
+                    android:src="@mipmap/ic_news_keep_default"
+                    android:layout_gravity="center_vertical"/>
 
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/collectTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收藏"
+                    android:background="@color/colorWhite"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

@@ -96,9 +96,10 @@ public class KnowledgeFragment extends BaseFragment implements HomeClickListener
     }
 
     @Override
-    public void onClick(String link, int id) {
+    public void onClick(String link, int id, String title) {
         Intent intent = new Intent(getActivity(), HomeDetailActivity.class);
         intent.putExtra("link", link);
+        intent.putExtra("title", title);
         startActivity(intent);
     }
 }

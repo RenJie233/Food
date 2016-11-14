@@ -49,7 +49,6 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        RecyclerView.ViewHolder holder = getViewHolderByViewType(viewType);
         switch (viewType) {
             case TYPE_RIGHT_PIC:
                 return new RightPicViewHolder(LayoutInflater.from(context).inflate(R.layout.item_right_pic, parent, false));
@@ -93,7 +92,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 rightPicViewHolder.rightLL.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id());
+                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id(), bean.getFeeds().get(position).getTitle());
                     }
                 });
                 break;
@@ -108,7 +107,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 threePicViewHolder.threeLL.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id());
+                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id(), bean.getFeeds().get(position).getTitle());
                     }
                 });
                 break;
@@ -121,7 +120,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 viewHolder.evaRL.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id());
+                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id(), bean.getFeeds().get(position).getTitle());
                     }
                 });
                 break;
@@ -142,7 +141,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 firstViewHolder.firstRL.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id());
+                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id(), bean.getFeeds().get(position).getTitle());
                     }
                 });
                 break;
@@ -152,7 +151,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 addsViewHolder.addsLL.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id());
+                        clickListener.onClick(bean.getFeeds().get(position).getLink(), bean.getFeeds().get(position).getItem_id(), bean.getFeeds().get(position).getTitle());
                     }
                 });
                 break;
