@@ -5,7 +5,6 @@ import android.os.Looper;
 
 import com.example.dllo.food.base.MyApp;
 import com.litesuits.orm.LiteOrm;
-import com.litesuits.orm.db.assit.QueryBuilder;
 import com.litesuits.orm.db.assit.WhereBuilder;
 
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by Ren on 16/11/9.
+ *
  */
 public class DBTool {
     private static  DBTool sDBTool = new DBTool();
@@ -33,30 +33,26 @@ public class DBTool {
         return sDBTool;
     }
 
-    public void insertSearchHistory(final ArrayList<SearchHistory> searchHistories) {
-        threadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                liteOrm.insert(searchHistories);
-            }
-        });
-    }
+//    public void insertSearchHistory(final ArrayList<SearchHistory> searchHistories) {
+//        threadPool.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                liteOrm.insert(searchHistories);
+//            }
+//        });
+//    }
 
     public void insertSearchHistory(final SearchHistory searchHistory) {
 
         threadPool.execute(new Runnable() {
             @Override
             public void run() {
-                liteOrm.delete(new WhereBuilder(SearchHistory.class).where("history=?", new String[] {searchHistory.getHistory()}));
+                liteOrm.delete(new WhereBuilder(SearchHistory.class).where("history=?", new Object[] {searchHistory.getHistory()}));
                 liteOrm.insert(searchHistory);
-//                queryAllHistory(new OnQueryListener() {
-//                    @Override
-//                    public void onQuery(ArrayList<SearchHistory> histories) {
-//                        if (histories.size() > 10) {
-//                            liteOrm.delete(SearchHistory.class, 0, 0, "id");
-//                        }
-//                    }
-//                });
+                ArrayList<SearchHistory> list = liteOrm.query(SearchHistory.class);
+                if (list.size() > 10) {
+                    liteOrm.delete(SearchHistory.class, 1, 1, "id");
+                }
             }
         });
     }
@@ -121,14 +117,14 @@ public class DBTool {
         });
     }
 
-    public void insertCollection(final ArrayList<Collection> collections) {
-        threadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                liteOrm.insert(collections);
-            }
-        });
-    }
+//    public void insertCollection(final ArrayList<Collection> collections) {
+//        threadPool.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                liteOrm.insert(collections);
+//            }
+//        });
+//    }
 
     public void queryAllCollection(OnCollectionQueryListener listener) {
         threadPool.execute(new QueryCollectionRunnable(listener));
@@ -138,20 +134,20 @@ public class DBTool {
         threadPool.execute(new Runnable() {
             @Override
             public void run() {
-                liteOrm.delete(new WhereBuilder(Collection.class).where("link=?", new String[]{getLink}));
+                liteOrm.delete(new WhereBuilder(Collection.class).where("link=?", new Object[]{getLink}));
             }
         });
     }
 
-    public void queryCollectionByLink(final String getLink) {
-        threadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                liteOrm.query(new QueryBuilder<Collection>(Collection.class).where("link=?", new String[]{getLink}));
-
-            }
-        });
-    }
+//    public void queryCollectionByLink(final String getLink) {
+//        threadPool.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                liteOrm.query(new QueryBuilder<Collection>(Collection.class).where("link=?", new String[]{getLink}));
+//
+//            }
+//        });
+//    }
 
 
     class QueryCollectionRunnable implements Runnable{

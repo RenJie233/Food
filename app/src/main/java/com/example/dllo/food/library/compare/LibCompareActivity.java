@@ -77,16 +77,6 @@ public class LibCompareActivity extends BaseAty implements View.OnClickListener 
                 break;
             case R.id.compareLeftClear:
                 compareLeftClear.setVisibility(View.GONE);
-//                if (leftArrayList.size() >= rightArrayList.size()) {
-//                    for (int i = 0; i < arrayList.size(); i++) {
-//                        CompareItemBean itemBean = new CompareItemBean();
-//                        itemBean.setRight(arrayList.get(i).getRight());
-//                        itemBean.setCenter(arrayList.get(i).getCenter());
-//                        rightArrayList.add(itemBean);
-//
-//
-//                    }
-//                }
                 for (int i = 0; i < rightArrayList.size(); i++) {
                     rightArrayList.get(i).setLeft("");
                 }
@@ -96,15 +86,6 @@ public class LibCompareActivity extends BaseAty implements View.OnClickListener 
                 leftArrayList.clear();
                 break;
             case R.id.compareRightClear:
-//                if (rightArrayList.size() >= leftArrayList.size()) {
-//                    for (int i = 0; i < arrayList.size(); i++) {
-//                        CompareItemBean itemBean = new CompareItemBean();
-//                        itemBean.setLeft(arrayList.get(i).getLeft());
-//                        itemBean.setCenter(arrayList.get(i).getCenter());
-//                        leftArrayList.add(itemBean);
-//
-//                    }
-//                }
                 compareRightClear.setVisibility(View.GONE);
                 for (int i = 0; i < leftArrayList.size(); i++) {
                     leftArrayList.get(i).setRight("");
@@ -129,7 +110,6 @@ public class LibCompareActivity extends BaseAty implements View.OnClickListener 
                     VolleySingleTon.getInstance().getImage(response.getThumb_image_url(), compareLeftIv);
                     compareLeftClear.setVisibility(View.VISIBLE);
                     compareLeftTv.setText(response.getName());
-//                    arrayList = new ArrayList<>();
 
                     for (int i = 0; i < response.getNutrition().size(); i++) {
                         CompareItemBean bean = new CompareItemBean();

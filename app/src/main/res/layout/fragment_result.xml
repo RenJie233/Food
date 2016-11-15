@@ -52,7 +52,8 @@
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="295dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
                 android:text="由高到低"
                 android:gravity="center_vertical"
                 android:textColor="#ff3939"
@@ -64,7 +65,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_food_ordering_down"
-                android:layout_marginLeft="355dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
                 android:layout_centerVertical="true"
                 android:visibility="gone"/>
 

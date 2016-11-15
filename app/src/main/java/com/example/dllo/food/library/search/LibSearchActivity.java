@@ -34,7 +34,6 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
     private String result;
     private int compare;
     private Intent intent;
-    //    private ArrayList<String> arrayList;
 
     @Override
     protected int getLayout() {
@@ -63,7 +62,6 @@ public class LibSearchActivity extends BaseAty implements View.OnClickListener{
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.searchFl, new SearchFragment());
         transaction.commit();
-//        arrayList = new ArrayList<>();
 
         EventBus.getDefault().register(this);
     }

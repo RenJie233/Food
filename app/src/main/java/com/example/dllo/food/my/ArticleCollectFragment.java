@@ -55,4 +55,19 @@ public class ArticleCollectFragment extends BaseFragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DBTool.getInstance().queryAllCollection(new DBTool.OnCollectionQueryListener() {
+            @Override
+            public void onQuery(ArrayList<Collection> collections) {
+                arrayList = collections;
+                CollectionListAdapter adapter = new CollectionListAdapter();
+                adapter.setCollections(collections);
+                articleCollectLv.setAdapter(adapter);
+
+            }
+        });
+    }
 }
